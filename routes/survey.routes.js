@@ -4,6 +4,6 @@ import { create } from "../controllers/survey.controller.js";
 
 const router = express.Router();
 
-router.post("/create", create);
+router.post("/", create);
 
 export default router;
