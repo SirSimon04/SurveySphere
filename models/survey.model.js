@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
+//single-/multi-select
+//freitext
+//slider
 const surveySchema = mongoose.Schema({
     name: { type: String, required: true },
+    isMultiSelect: { type: Boolean, required: true }, //if not multiselect, then its single select
+    answers: [ { text: String } ]
 });
 
 export default mongoose.model("Survey", surveySchema);
