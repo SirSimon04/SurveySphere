@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './Auth.css';
 
 const Auth = () => {
@@ -6,6 +7,8 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
+
+  const navigate = useNavigate();
 
   function switchMode() {
     setIsLogin((prev) => !prev);
@@ -24,8 +27,7 @@ const Auth = () => {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implementiere hier die Login-Logik
+    navigate("/overview");
   };
 
   return (
