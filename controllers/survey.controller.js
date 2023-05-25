@@ -15,3 +15,50 @@ export const create = async (req, res) => {
     res.status.json({ message: "Something went wrong" });
   }
 }
+
+export const vote = async (req, res) => {
+    try{
+
+        const { id: _id, aId: answerOptionsId } = req.params;
+
+        const newSurvey = await SurveyModel.findByIdAndUpdate(_id, 
+                {
+                    $push: {
+                    "answerOptions.$[option].answers": {
+                            userID: req.userId,
+                            text: "Moin"
+                        },
+                    },    
+                },
+                {
+                    new: true,
+                    arrayFilters: [ { "option._id": answerOptionsId } ]
+                },
+                // {
+                //     $set: {
+                //     answerOptions: [
+                //         {
+                //         id: answerOptionsId,
+                //         answers: [
+                //             {
+                //                 userID: req.userID,
+                //             },
+                //         ],
+                //         },
+                //     ],
+                //     },
+                // },
+            //     {
+            //     new: true,
+
+            // },
+        );
+
+        console.log();
+
+        res.json(newSurvey);
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Something went wrong" });
+    }
+}
