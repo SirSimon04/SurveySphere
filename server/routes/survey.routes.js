@@ -6,6 +6,6 @@ import auth from "../midlleware/auth.middleware.js";
 const router = express.Router();
 
 router.post("/", create);
-router.get("/:id/vote/:aId",auth, vote);
+router.post("/vote",auth, vote);
 
 export default router;
