@@ -19,44 +19,56 @@ export const create = async (req, res) => {
 export const vote = async (req, res) => {
     try{
 
-        const { id: _id, aId: answerOptionsId } = req.params;
+        const { surveyID, questionID, answerOptionID } = req.body;
 
-        const newSurvey = await SurveyModel.findByIdAndUpdate(_id, 
-                {
-                    $push: {
-                    "answerOptions.$[option].answers": {
-                            userID: req.userId,
-                            text: "Moin"
-                        },
-                    },    
-                },
-                {
-                    new: true,
-                    arrayFilters: [ { "option._id": answerOptionsId } ]
-                },
-                // {
-                //     $set: {
-                //     answerOptions: [
-                //         {
-                //         id: answerOptionsId,
-                //         answers: [
-                //             {
-                //                 userID: req.userID,
-                //             },
-                //         ],
-                //         },
-                //     ],
-                //     },
-                // },
-            //     {
-            //     new: true,
+        const userID = req.userId;
 
-            // },
-        );
+        const survey = await SurveyModel.findById(surveyID);
 
-        console.log();
+        if (!survey) {
+            res.status(404).json({ error: "Umfrage nicht gefunden"});
+        return;
+        }
 
-        res.json(newSurvey);
+        const question = survey.questions.find((q) => q._id.toString() === questionID);
+
+        if (!question) {
+            res.status(404).json({ error: "Frage nicht gefunden"});
+        return;
+        }
+
+        const answerOption = question.answerOptions.find((option) => option._id.toString() === answerOptionID);
+
+        if (!answerOption) {
+            res.status(404).json({ error: "Antwortoption nicht gefunden"});
+        return;
+        }
+
+        if(!survey.isMultiSelect){
+            const existingAnswer = question.answerOptions.some((option) =>
+                option.answers.some((answer) => answer.userID === userID)
+            );
+
+            if (existingAnswer) {
+                return res.status(400).json({ error: "Du hast bereits eine Antwort abgegeben" });
+            }
+        }
+
+        const existingAnswer = answerOption.answers.find((answer) => answer.userID === userID);
+
+        if (existingAnswer) {
+            return res.status(400).json({ error: "Du hast bereits eine Antwort für diese Frage abgegeben abgegeben" });
+        }
+
+        const newAnswer = {
+            userID: userID,
+        };
+
+        answerOption.answers.push(newAnswer);
+
+        await survey.save();
+
+        res.json(survey);
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: "Something went wrong" });
