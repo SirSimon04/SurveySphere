@@ -1,0 +1,15 @@
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  .left, .middle, .right {
+    flex: 1;
+  }
+  
+  .right {
+    text-align: right;
+  }
