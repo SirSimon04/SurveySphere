@@ -1,0 +1,9 @@
+.surveyContainer {
+    margin-top: 100px;
+}
+
+.surveyCardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
