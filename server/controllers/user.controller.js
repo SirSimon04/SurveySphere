@@ -22,7 +22,7 @@ export const signin = async (req, res) => {
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
       "Test",
-      { expiresIn: "1h" }
+      { expiresIn: "30d" }
     );
 
     res.status(200).json({ result: existingUser, token });
@@ -32,7 +32,6 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  console.log("signup");
 
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 

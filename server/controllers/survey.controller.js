@@ -1,5 +1,24 @@
 import SurveyModel from "../models/survey.model.js";
 
+export const find = async (req, res) => {
+    const { id: surveyID } = req.params;
+
+    try{
+
+        const survey = await SurveyModel.findById(surveyID);
+
+        if (!survey) {
+            res.status(404).json({ error: "Umfrage nicht gefunden"});
+        return;
+        }
+
+        return res.json(survey);
+
+    } catch (error){
+        res.status.json({ message: "Something went wrong" });
+    }
+}
+
 export const create = async (req, res) => {
     const survey = req.body;
 
@@ -12,7 +31,7 @@ export const create = async (req, res) => {
         res.status(201).json(newSurvey);
 
     } catch (error) {
-    res.status.json({ message: "Something went wrong" });
+        res.status.json({ message: "Something went wrong" });
   }
 }
 
@@ -45,13 +64,12 @@ export const vote = async (req, res) => {
         }
 
         if(!survey.isMultiSelect){
-            const existingAnswer = question.answerOptions.some((option) =>
-                option.answers.some((answer) => answer.userID === userID)
-            );
-
+            question.answerOptions.forEach((option) => {
+                const existingAnswer = option.answers.find((answer) => answer.userID === userID);
             if (existingAnswer) {
-                return res.status(400).json({ error: "Du hast bereits eine Antwort abgegeben" });
+                option.answers.pull(existingAnswer._id);
             }
+        });
         }
 
         const existingAnswer = answerOption.answers.find((answer) => answer.userID === userID);
