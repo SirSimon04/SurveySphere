@@ -7,10 +7,12 @@ import LandingPage from "./components/LandingPage/LandingPage.js";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Auth />} />
-        <Route path='/overview' element={<LandingPage />} />
-      </Routes>
+      <body>
+        <Routes>
+          <Route path='/' element={<Auth />} />
+          <Route path='/overview' element={<LandingPage />} />
+        </Routes>
+      </body>
     </BrowserRouter>
   );
 }
