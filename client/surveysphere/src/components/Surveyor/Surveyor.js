@@ -13,6 +13,10 @@ function Surveyor() {
         <SurveyQuestionCard />
         <SurveyQuestionCard />
         <SurveyQuestionCard />
+        <div className='endSequenz'>
+          <p>Vielen Dank für deine Teilnahme!</p>
+          <button>Abschicken!</button>
+        </div>
       </div>
     </div>  
   )

@@ -10,7 +10,7 @@ const NavBar = () => {
   return (
       <div className="navBar">
         <div className="left">
-          <span className='greeting'>Hallo, Martin</span>
+          <span className='greeting'>Hallo, Martin!</span>
         </div>
         <div className="middle">
           <h1>Titel dieser Survey</h1>
