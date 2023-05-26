@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-image: url('./../surveysphere_bg2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
