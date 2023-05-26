@@ -2,14 +2,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 2px 40px;
     background-color: #f2f2f2;
-  }
-  
-  .left, .middle, .right {
-    flex: 1;
+    box-shadow: 0px 2px 20px 5px grey;
   }
   
   .right {
     text-align: right;
+  }
+
+  .cancelButton {
+    padding: 10px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .greeting {
+    font-size: large;
   }
