@@ -6,13 +6,13 @@ function navBar() {
     return (
         <div className="navBar">
           <div className="left">
-            <span>Hello, user</span>
+            <span>Hallo, Martin</span>
           </div>
           <div className="middle">
-            <h1>Title</h1>
+            <h1>Titel dieser Survey</h1>
           </div>
           <div className="right">
-            <button>Button</button>
+            <button>Umfrage verlassen</button>
           </div>
         </div>
       );
