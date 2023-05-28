@@ -23,22 +23,22 @@ function Surveyor() {
     async function loadSurvey() {
     const dbSurvey = await getSurvey(id);
     setSurvey(dbSurvey.data);
+    setSelectedAnswers(new Array(dbSurvey.data.questions.length).fill([]));
   }
 
   const handleAnswerSelect = (questionIndex, answerId) => {
-    setSelectedAnswers((prevSelectedAnswers) => {
-      const newSelectedAnswers = [...prevSelectedAnswers];
+  setSelectedAnswers((prevSelectedAnswers) => {
+    const newSelectedAnswers = [...prevSelectedAnswers];
 
-      if (newSelectedAnswers[questionIndex]) {
-        newSelectedAnswers[questionIndex].answerId = answerId;
-      } else {
-        newSelectedAnswers[questionIndex] = { answerId };
-      }
+    if (newSelectedAnswers[questionIndex].includes(answerId)) {
+      newSelectedAnswers[questionIndex] = newSelectedAnswers[questionIndex].filter((id) => id !== answerId);
+    } else {
+      newSelectedAnswers[questionIndex] = [...newSelectedAnswers[questionIndex], answerId];
+    }
 
-      return newSelectedAnswers;
-    });
-    console.log(selectedAnswers);
-  };
+    return newSelectedAnswers;
+  });
+};
 
   function submitSurvey() {
     console.log(selectedAnswers);
@@ -52,7 +52,7 @@ function Surveyor() {
           <SurveyQuestionCard
             question={question}
             handleAnswerSelect={handleAnswerSelect}
-            selectedAnswer={selectedAnswers[index] ? selectedAnswers[index].answerId : null}
+            selectedAnswers={selectedAnswers[index] || []}
             index={index}
             key={question._id}
           />
