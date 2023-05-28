@@ -7,20 +7,11 @@ const auth = async (req, res, next) => {
         res.status(403).json({ message: "no Authorization" })
     }
 
-    const token = req.headers.authorization.split(" ")[1];
-    const isCustomAuth = token.length < 500;
+    const token = req.headers.authorization.split(" ")[1]; //Format is "Bearer token"
 
-    let decodedData;
+    const decodedData = jwt.verify(token, "Test");
 
-    if (token && isCustomAuth) {
-      decodedData = jwt.verify(token, "Test");
-
-      req.userId = decodedData?.id;
-    } else {
-      decodedData = jwt.decode(token);
-
-      req.userId = decodedData?.sub;
-    }
+    req.userId = decodedData?.id;
 
     next();
   } catch (error) {

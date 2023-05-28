@@ -22,16 +22,21 @@ export const find = async (req, res) => {
 export const create = async (req, res) => {
     const survey = req.body;
 
+    //TODO: destructuring of body, check if values are all given
+
     const newSurvey = new SurveyModel(survey);
 
     try{
         
+        newSurvey.creator = req.userId;
+
         await newSurvey.save();
 
         res.status(201).json(newSurvey);
 
     } catch (error) {
-        res.status.json({ message: "Something went wrong" });
+        console.log(error);
+        res.json({ message: "Something went wrong" });
   }
 }
 
