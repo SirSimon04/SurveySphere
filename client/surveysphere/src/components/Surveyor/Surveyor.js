@@ -3,8 +3,11 @@ import './Surveyor.css'
 import NavBar from './../NavBar/NavBar.js';
 import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
 import { getSurvey } from '../../api';
+import { useParams } from 'react-router-dom';
 
 function Surveyor() {
+
+  const { id } = useParams();
 
   const [survey, setSurvey] = useState({ questions: [] });
 
@@ -13,8 +16,9 @@ function Surveyor() {
     loadSurvey();
   }, []);
 
+  //647078de2ff4f9b8e4a7f710
   async function loadSurvey(){
-    const survey = await getSurvey("647078de2ff4f9b8e4a7f710");
+    const survey = await getSurvey(id);
     setSurvey(survey.data);
   }
 

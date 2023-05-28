@@ -15,7 +15,7 @@ export const find = async (req, res) => {
         return res.json(survey);
 
     } catch (error){
-        res.status.json({ message: "Something went wrong" });
+        res.status(500).json({ message: "Something went wrong" });
     }
 }
 
