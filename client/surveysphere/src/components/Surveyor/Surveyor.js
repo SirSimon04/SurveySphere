@@ -13,6 +13,8 @@ function Surveyor() {
 
   const [selectedAnswers, setSelectedAnswers] = useState([]);
 
+  const isMultiselect = false;
+
   //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
@@ -30,10 +32,17 @@ function Surveyor() {
   setSelectedAnswers((prevSelectedAnswers) => {
     const newSelectedAnswers = [...prevSelectedAnswers];
 
-    if (newSelectedAnswers[questionIndex].includes(answerId)) {
-      newSelectedAnswers[questionIndex] = newSelectedAnswers[questionIndex].filter((id) => id !== answerId);
-    } else {
-      newSelectedAnswers[questionIndex] = [...newSelectedAnswers[questionIndex], answerId];
+    if(!survey.isMultiSelect){
+      newSelectedAnswers[questionIndex] = [answerId]
+    }
+    else {
+      if (newSelectedAnswers[questionIndex].includes(answerId)) {
+        //if answer is selected, remove it
+        newSelectedAnswers[questionIndex] = newSelectedAnswers[questionIndex].filter((id) => id !== answerId);
+      } else {
+        //if answer is not selected add it to the previous selected ones
+        newSelectedAnswers[questionIndex] = [...newSelectedAnswers[questionIndex], answerId];
+      }
     }
 
     return newSelectedAnswers;
