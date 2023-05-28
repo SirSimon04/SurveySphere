@@ -7,7 +7,7 @@ function SurveyQuestionCard({ question }) {
       <p>{question.question}</p>
         {/* <p>Frage 1: Welche dieser Farben magst Du am meisten?</p> */}
         <div className='answerGrid'>
-            {question.answerOptions.map(options => <button className='answer'>{options.text}</button>)}
+            {question.answerOptions.map(option => <button key={option._id} className='answer'>{option.text}</button>)}
             {/* <button className='answer'>Antwort 1</button>
             <button className='answer'>Antwort 2</button>
             <button className='answer'>Antwort 3</button>

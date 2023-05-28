@@ -14,7 +14,7 @@ function Surveyor() {
   //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
-  }, []);
+  });
 
   //647078de2ff4f9b8e4a7f710
   async function loadSurvey(){
@@ -26,7 +26,7 @@ function Surveyor() {
     <div className='surveyContainer'>
       <NavBar />
       <div className='surveyCardContainer'>
-        {survey?.questions.map(question => <SurveyQuestionCard question={question}/>)}
+        {survey?.questions.map(question => <SurveyQuestionCard question={question} key={question._id}/>)}
         {/* <SurveyQuestionCard />
         <SurveyQuestionCard />
         <SurveyQuestionCard />
