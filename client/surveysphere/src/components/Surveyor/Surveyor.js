@@ -11,22 +11,52 @@ function Surveyor() {
 
   const [survey, setSurvey] = useState({ questions: [] });
 
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
+
   //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
-  });
+  }, []);
 
-  //647078de2ff4f9b8e4a7f710
-  async function loadSurvey(){
-    const survey = await getSurvey(id);
-    setSurvey(survey.data);
+  //647334aa5e584ce8067d2bcc
+  //id of a survey with some more data
+    async function loadSurvey() {
+    const dbSurvey = await getSurvey(id);
+    setSurvey(dbSurvey.data);
+  }
+
+  const handleAnswerSelect = (questionIndex, answerId) => {
+    setSelectedAnswers((prevSelectedAnswers) => {
+      const newSelectedAnswers = [...prevSelectedAnswers];
+
+      if (newSelectedAnswers[questionIndex]) {
+        newSelectedAnswers[questionIndex].answerId = answerId;
+      } else {
+        newSelectedAnswers[questionIndex] = { answerId };
+      }
+
+      return newSelectedAnswers;
+    });
+    console.log(selectedAnswers);
+  };
+
+  function submitSurvey() {
+    console.log(selectedAnswers);
   }
 
   return (
     <div className='surveyContainer'>
       <NavBar />
       <div className='surveyCardContainer'>
-        {survey?.questions.map(question => <SurveyQuestionCard question={question} key={question._id}/>)}
+        {survey?.questions.map((question, index) => (
+          <SurveyQuestionCard
+            question={question}
+            handleAnswerSelect={handleAnswerSelect}
+            selectedAnswer={selectedAnswers[index] ? selectedAnswers[index].answerId : null}
+            index={index}
+            key={question._id}
+          />
+        ))}
         {/* <SurveyQuestionCard />
         <SurveyQuestionCard />
         <SurveyQuestionCard />
@@ -34,7 +64,7 @@ function Surveyor() {
         <SurveyQuestionCard /> */}
         <div className='endSequenz'>
           <p>Vielen Dank für deine Teilnahme!</p>
-          <button>Abschicken!</button>
+          <button onClick={() => submitSurvey()}>Abschicken!</button>
         </div>
       </div>
     </div>  

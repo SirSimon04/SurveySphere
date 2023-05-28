@@ -8,16 +8,16 @@
     margin: 20px;
 }
 
-.basicCard > p:hover {
+.basicCard>p:hover {
     cursor: default;
 }
 
-.answerGrid{
+.answerGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-top: 10px;
-} 
+}
 
 .answer {
     display: flex;
@@ -26,6 +26,11 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+.answer-selected {
+    background-color: red;
+    color: white;
 }
 
 .answer:hover {
