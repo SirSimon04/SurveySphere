@@ -1,0 +1,10 @@
+.creatorContainer {
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+.createCardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

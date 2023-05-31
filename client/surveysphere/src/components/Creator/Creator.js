@@ -1,11 +1,18 @@
 import React from 'react'
 import './Creator.css'
-import NavBar from '../SurvNavBar/SurvNavBar.js';
+import CreaNavBar from '../CreaNavBar/CreaNavBar.js';
+import CreateQuestionCard from '../CreateQuestionCard/CreateQuestionCard';
 
 function Creator() {
   return (
     <div className='creatorContainer'>
-        <NavBar />
+        <CreaNavBar />
+        <div className='createCardContainer'>
+          <CreateQuestionCard />
+          <CreateQuestionCard />
+          <CreateQuestionCard />
+          <CreateQuestionCard />
+        </div>
     </div>
   )
 }
