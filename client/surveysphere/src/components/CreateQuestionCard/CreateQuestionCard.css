@@ -1,81 +1,79 @@
 .basicCard {
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .answer {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .answer.question {
-    font-weight: bold;
-  }
-  
-  .answerGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .addOptionButton {
-    padding: 10px 20px;
-    background-color: #00a22b;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  .questionType {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .questionType label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding-left: 5px;
-    display: inline-flex;
-  }
-  
-  .questionType input[type='radio'] {
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #00a22b;
-    border-radius: 50%;
-    margin-right: 5px;
-    outline: none;
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .questionType input[type='radio']:checked {
-    border-color: #00a22b;
-  }
-  
-  .questionType input[type='radio']:hover {
-    border-color: #007f21;
-  }
-  
-  .questionType label:last-child {
-    margin-left: 20px;
-  }
-  
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.answer {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.answer.question {
+  font-weight: bold;
+}
+
+.answerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.addOptionButton {
+  padding: 10px 20px;
+  background-color: #00a22b;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: flex-start;
+}
+
+.questionType {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.questionType label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 5px;
+  display: inline-flex;
+}
+
+.questionType input[type='radio'] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #00a22b;
+  border-radius: 50%;
+  margin-right: 5px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.questionType input[type='radio']:checked {
+  border-color: #00a22b;
+}
+
+.questionType input[type='radio']:hover {
+  border-color: #007f21;
+}
+
+.questionType label:last-child {
+  margin-left: 20px;
+}
