@@ -7,7 +7,9 @@ export const authSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-        state.jwt = action.payload
+        state.jwt = action.payload.jwt;
+        state.mail = action.payload.mail;
+        state.id = action.payload.id;
     }
     // increment: (state) => {
     //   state.value += 1

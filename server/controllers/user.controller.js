@@ -17,7 +17,7 @@ export const signin = async (req, res) => {
     );
 
     if (!isPasswordCorrect)
-      return res.status(400).json({ message: "Password is incorrect" });
+      return res.status(401).json({ message: "Password is incorrect" });
 
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
@@ -27,7 +27,7 @@ export const signin = async (req, res) => {
 
     res.status(200).json({ result: existingUser, token });
   } catch (error) {
-    res.status.json({ message: "Something went wrong" });
+    res.status(500).json({ message: "Something went wrong" });
   }
 };
 

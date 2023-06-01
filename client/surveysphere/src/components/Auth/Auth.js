@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Auth.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from "./authSlice";
+import { signIn } from "../../api/index";
 
 const Auth = () => {
 
@@ -32,10 +33,44 @@ const Auth = () => {
     setRepeatedPassword(event.target.value);
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(login("Moin"));
-    // navigate("/overview");
+
+    const formData = {
+      email,
+      password
+    };
+
+    try{
+
+      const res = await signIn(formData);  
+
+      const token = res.data.token;
+      const id = res.data.result._id;
+      dispatch(login({
+        mail: email,
+        jwt: token,
+        id: id
+      }));
+
+      navigate("/overview");
+
+    } catch(e) {
+      console.log({e});
+      let error;
+      switch(e.response.status){
+        case 401: 
+          error = "Falsches Passwort";
+          break;
+        case 404:
+          error = "Kein Nutzer mit dieser Mail";
+          break;
+        default:
+          error = "Es ist ein unbestimmer Fehler aufgetreten";
+      }
+      alert(error);
+    }
+
   };
 
   return (
