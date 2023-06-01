@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Auth.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from "./authSlice";
 
 const Auth = () => {
+
+  const jwt = useSelector(state => state.auth.jwt);
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
@@ -27,7 +33,9 @@ const Auth = () => {
   }
 
   const handleSubmit = (event) => {
-    navigate("/overview");
+    event.preventDefault();
+    dispatch(login("Moin"));
+    // navigate("/overview");
   };
 
   return (
