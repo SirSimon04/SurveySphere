@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CreateQuestionCard.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
-function CreateQuestionCard() {
+function CreateQuestionCard({ onDelete }) {
   const [question, setQuestion] = useState('');
   const [answerOptions, setAnswerOptions] = useState(['', '']);
   const [singleSelect, setSingleSelect] = useState(true);
@@ -22,12 +22,20 @@ function CreateQuestionCard() {
   };
 
   const handleQuestionTypeChange = () => {
-    setSingleSelect(prev => !prev);
+    setSingleSelect((prev) => !prev);
   };
 
   return (
     <div className='basicCard'>
-      <input className='answer question' placeholder='Frage eingeben:' value={question} onChange={handleQuestionChange} />
+      <button className='closeButton' onClick={() => onDelete()}>
+        X
+      </button>
+      <input
+        className='answer question'
+        placeholder='Frage eingeben:'
+        value={question}
+        onChange={handleQuestionChange}
+      />
       <div className='answerGrid'>
         {answerOptions.map((option, index) => (
           <input
@@ -38,11 +46,18 @@ function CreateQuestionCard() {
             onChange={(e) => handleAnswerOptionChange(e, index)}
           />
         ))}
-        <button className='addOptionButton' onClick={addAnswerOption}>+</button>
+        <button className='addOptionButton' onClick={addAnswerOption}>
+          +
+        </button>
       </div>
       <div className='questionType'>
-        <label className='questionTypeLabel'>Single Select</label>
-        <ToggleSwitch onChange={handleQuestionTypeChange} singleSelect={singleSelect}/>
+        <label className='questionTypeLabel'>
+          {singleSelect ? 'Single Select' : 'Multi Select'}
+        </label>
+        <ToggleSwitch
+          onChange={handleQuestionTypeChange}
+          singleSelect={singleSelect}
+        />
       </div>
     </div>
   );
