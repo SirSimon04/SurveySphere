@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import './ToggleSwitch.css';
 
-function ToggleSwitch() {
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
+function ToggleSwitch({ onChange, singleSelect}) {
 
   return (
-    <label className={`toggleSwitch ${checked ? 'checked' : ''}`}>
-      <input type="checkbox" checked={checked} onChange={handleChange} />
+    <label className={`toggleSwitch ${singleSelect ? 'checked' : ''}`}>
+      <input type="checkbox" checked={singleSelect} onChange={onChange} />
       <span className="slider"></span>
     </label>
   );

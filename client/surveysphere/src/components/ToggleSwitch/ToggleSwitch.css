@@ -29,6 +29,6 @@
   }
   
   .toggleSwitch.checked .slider {
-    transform: translateX(21px);
+    transform: translateX(16px);
   }
   

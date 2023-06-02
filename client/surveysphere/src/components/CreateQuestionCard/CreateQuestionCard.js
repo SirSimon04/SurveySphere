@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './CreateQuestionCard.css';
+import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
 function CreateQuestionCard() {
   const [question, setQuestion] = useState('');
   const [answerOptions, setAnswerOptions] = useState(['', '']);
-  const [questionType, setQuestionType] = useState('single');
+  const [singleSelect, setSingleSelect] = useState(true);
 
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
@@ -20,8 +21,8 @@ function CreateQuestionCard() {
     setAnswerOptions([...answerOptions, '']);
   };
 
-  const handleQuestionTypeChange = (e) => {
-    setQuestionType(e.target.value);
+  const handleQuestionTypeChange = () => {
+    setSingleSelect(prev => !prev);
   };
 
   return (
@@ -40,14 +41,8 @@ function CreateQuestionCard() {
         <button className='addOptionButton' onClick={addAnswerOption}>+</button>
       </div>
       <div className='questionType'>
-        <label>
-          <input type='radio' value='single' checked={questionType === 'single'} onChange={handleQuestionTypeChange} />
-          Single Select
-        </label>
-        <label>
-          <input type='radio' value='multi' checked={questionType === 'multi'} onChange={handleQuestionTypeChange} />
-          Multi Select
-        </label>
+        <label className='questionTypeLabel'>Single Select</label>
+        <ToggleSwitch onChange={handleQuestionTypeChange} singleSelect={singleSelect}/>
       </div>
     </div>
   );
