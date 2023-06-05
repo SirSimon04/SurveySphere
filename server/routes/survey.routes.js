@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/", auth, create);
 router.post("/vote",auth, vote);
-router.get("/find/:id", auth, find);
+router.get("/find/:id", find);
 router.get("/own", auth, getOwn);
 
 export default router;

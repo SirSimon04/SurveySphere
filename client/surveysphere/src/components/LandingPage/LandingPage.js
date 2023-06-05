@@ -36,7 +36,12 @@ function LandingPage() {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             const inputValue = event.target.value;
-            navigate(`/surveyor/${inputValue}`);
+            if(inputValue === ""){
+                navigate(`/surveyor/647e34d70ea1ab66af49e073`);
+            }
+            else{
+                navigate(`/surveyor/${inputValue}`);
+            }
         }
     };
 
