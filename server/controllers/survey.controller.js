@@ -54,6 +54,18 @@ export const create = async (req, res) => {
   }
 }
 
+export const voteAll = async (req, res) => {
+
+    const answers = req.body;
+
+    try {
+        res.json({})
+    } catch (error){
+        console.log(error);
+        res.json({ message: "Something went wrong" });
+    }
+}
+
 export const vote = async (req, res) => {
     try{
 

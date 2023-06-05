@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './Surveyor.css'
 import NavBar from './../NavBar/NavBar.js';
 import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
-import { getSurvey } from '../../api';
+import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Surveyor() {
 
@@ -12,6 +13,8 @@ function Surveyor() {
   const [survey, setSurvey] = useState({ questions: [] });
 
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+
+  const token = useSelector(state => state.auth.jwt);
 
   const isMultiselect = false;
 
@@ -49,8 +52,18 @@ function Surveyor() {
   });
 };
 
-  function submitSurvey() {
+  async function submitSurvey() {
+
     console.log(selectedAnswers);
+
+    const postData = {
+      id,
+      selectedAnswers
+    }
+
+    const res = await voteAll(token, postData);
+
+    console.log(res);
   }
 
   return (

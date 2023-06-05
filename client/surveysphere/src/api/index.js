@@ -16,3 +16,8 @@ export const getOwnSurveys = (token) => API.get(`/survey/own`, {
                                                         Authorization: `Bearer ${token}`,
                                                       },
                                                     });
+export const voteAll = (token, data) => API.post(`/survey/vote/all`, data, {
+                                                      headers: {
+                                                        Authorization: `Bearer ${token}`,
+                                                      },
+                                                    });
