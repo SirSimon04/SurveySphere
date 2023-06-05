@@ -20,7 +20,7 @@ function Surveyor() {
     loadSurvey();
   }, []);
 
-  //647334aa5e584ce8067d2bcc
+  //647e34d70ea1ab66af49e073
   //id of a survey with some more data
     async function loadSurvey() {
     const dbSurvey = await getSurvey(id);
@@ -55,7 +55,7 @@ function Surveyor() {
 
   return (
     <div className='surveyContainer'>
-      <NavBar />
+      <NavBar title={survey.name}/>
       <div className='surveyCardContainer'>
         {survey?.questions.map((question, index) => (
           <SurveyQuestionCard
