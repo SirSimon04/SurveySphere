@@ -55,16 +55,37 @@ export const create = async (req, res) => {
 }
 
 export const voteAll = async (req, res) => {
+  try {
+    const { id: surveyId, selectedAnswers: answers} = req.body;
+    const userID = req.userId;
 
-    const answers = req.body;
-
-    try {
-        res.json({})
-    } catch (error){
-        console.log(error);
-        res.json({ message: "Something went wrong" });
+    // Überprüfen, ob die Umfrage existiert
+    const survey = await SurveyModel.findById(surveyId);
+    if (!survey) {
+      return res.status(404).json({ message: 'Umfrage nicht gefunden' });
     }
-}
+
+  answers.forEach((answerIds, questionIndex) => {
+      const question = survey.questions[questionIndex];
+      answerIds.forEach((answerId) => {
+        const answerOption = question.answerOptions.find(
+          (option) => option._id.toString() === answerId
+        );
+        if (answerOption) {
+          answerOption.answers.push({ userID });
+        }
+      });
+    });
+
+    // Speichern Sie die geänderte Umfrage
+    await survey.save();
+
+    res.status(200).json({ message: 'Alle Antworten wurden erfolgreich gespeichert' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Es ist ein Fehler aufgetreten' });
+  }
+};
 
 export const vote = async (req, res) => {
     try{
