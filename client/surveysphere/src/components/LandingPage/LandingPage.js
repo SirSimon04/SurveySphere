@@ -3,7 +3,7 @@ import './LandingPage.css';
 import results from './media/results.svg';
 import survey from './media/survey.svg';
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const AnimatedInput = ({placeholder: passedPlaceholder = "", ...passedProps}) => {
     const [placeholder, setPlaceholder] = useState(passedPlaceholder.slice(0, 0));
