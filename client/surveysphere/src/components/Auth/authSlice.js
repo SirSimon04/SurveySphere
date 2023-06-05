@@ -10,6 +10,7 @@ export const authSlice = createSlice({
         state.jwt = action.payload.jwt;
         state.mail = action.payload.mail;
         state.id = action.payload.id;
+        state.userName = action.payload.userName
     }
     // increment: (state) => {
     //   state.value += 1

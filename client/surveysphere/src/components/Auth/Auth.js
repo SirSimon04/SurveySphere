@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Auth.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from "./authSlice";
-import { signIn } from "../../api/index";
+import { signIn, signUp } from "../../api/index";
 
 const Auth = () => {
 
@@ -13,6 +13,7 @@ const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
+  const [userName, setUserName] = useState('');
   const [isLogin, setIsLogin] = useState(true);
 
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ const Auth = () => {
     setEmail(event.target.value);
   };
 
+  const handleUserNameChange = event => {
+    setUserName(event.target.value);
+  }
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
@@ -33,7 +38,7 @@ const Auth = () => {
     setRepeatedPassword(event.target.value);
   }
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     const formData = {
@@ -73,6 +78,49 @@ const Auth = () => {
 
   };
 
+  const handleSignUp = async event => {
+    event.preventDefault();
+
+    const formData = {
+      email,
+      password,
+      confirmPassword: repeatedPassword,
+      userName
+    };
+
+    try {
+
+      const res = await signUp(formData);
+
+      const token = res.data.token;
+      const id = res.data.result._id;
+
+      dispatch(login({
+        mail: email,
+        jwt: token,
+        id: id,
+        userName
+      }));
+
+      navigate("/overview");
+
+    } catch (e) {
+      console.log({e});
+      let error;
+      switch(e.response.status){
+        case 409:
+          error = "Der Nutzer existiert bereits";
+          break;
+        case 401:
+          error = "Die Passwörter stimmen nicht überein";
+          break;
+        default:
+          error = "Es ist ein unbestimmter Fehler aufgetreten";
+      }
+      alert(error);
+    }
+  }
+
   return (
     <div className="login-container">
       <form className="login-form">
@@ -90,13 +138,22 @@ const Auth = () => {
           onChange={handlePasswordChange}
         />
         { !isLogin && 
-        <input
-          type="password"
-          placeholder="Passwort wiederholen"
-          value={repeatedPassword}
-          onChange={handleRepeatedPasswordChange}
-        />}
-        <button onClick={handleSubmit}>{ isLogin ? "Anmelden" : "Registrieren"}</button>
+        <>
+          <input
+            type="password"
+            placeholder="Passwort wiederholen"
+            value={repeatedPassword}
+            onChange={handleRepeatedPasswordChange}
+          />
+          <input
+            type="text"
+            placeholder="Nutzername eingeben"
+            value={userName}
+            onChange={handleUserNameChange}
+          />
+        </>
+        }
+        <button onClick={isLogin ? handleLogin : handleSignUp}>{ isLogin ? "Anmelden" : "Registrieren"}</button>
         <p className="signup-link">
           { isLogin ? "Noch kein Konto?" : "Schon ein Konto?"} <a href="#signup" onClick={switchMode}>{ isLogin ? "Registieren" : "Login"}</a>
         </p>
