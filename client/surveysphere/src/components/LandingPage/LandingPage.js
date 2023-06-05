@@ -3,6 +3,7 @@ import './LandingPage.css';
 import results from './media/results.svg';
 import survey from './media/survey.svg';
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
 export const AnimatedInput = ({placeholder: passedPlaceholder = "", ...passedProps}) => {
     const [placeholder, setPlaceholder] = useState(passedPlaceholder.slice(0, 0));
@@ -29,6 +30,7 @@ export const AnimatedInput = ({placeholder: passedPlaceholder = "", ...passedPro
 
 function LandingPage() {
 
+    const userName = useSelector(state => state.auth.userName);
     const navigate = useNavigate();
 
     const handleKeyDown = (event) => {
@@ -49,7 +51,7 @@ function LandingPage() {
     return (
     <>
     <div class="page">
-    <h1 class="title">Hallo, Name</h1>
+    <h1 class="title">Hallo, {userName}</h1>
 
         <div class="inputContainer">
             {/* <input class="inputField" type="text" placeholder="Enter ID to join survey"></input>     */}

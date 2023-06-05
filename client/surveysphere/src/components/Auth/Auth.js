@@ -52,10 +52,12 @@ const Auth = () => {
 
       const token = res.data.token;
       const id = res.data.result._id;
+      const userName = res.data.result.userName;
       dispatch(login({
         mail: email,
         jwt: token,
-        id: id
+        id: id,
+        userName
       }));
 
       navigate("/overview");
