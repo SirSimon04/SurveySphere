@@ -8,6 +8,7 @@ const auth = async (req, res, next) => {
     }
 
     const token = req.headers.authorization.split(" ")[1]; //Format is "Bearer token"
+    // const token = req.header.authorization;
 
     const decodedData = jwt.verify(token, "Test");
 
@@ -15,7 +16,7 @@ const auth = async (req, res, next) => {
 
     next();
   } catch (error) {
-    
+    console.log(error)
     if(error.name === "JsonWebTokenError"){
       req.userId = "646f3ab231c189c4a0134615"; //userID of Mimming
       next();

@@ -8,6 +8,6 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
-export const getSurvey = (surveyID) => API.get(`/survey/${surveyID}`);
+export const getSurvey = (surveyID) => API.get(`/survey/find/${surveyID}`);
 export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);

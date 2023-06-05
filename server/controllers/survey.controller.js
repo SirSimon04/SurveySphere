@@ -15,7 +15,21 @@ export const find = async (req, res) => {
         return res.json(survey);
 
     } catch (error){
-        res.status(500).json({ message: "Something went wrong" });
+        res.status(500).json({ message: "Something went wrong1" });
+    }
+}
+
+export const getOwn = async (req, res) => {
+
+    try {
+
+        const surveys = await SurveyModel.find({ creator: req.userId });
+
+        res.json(surveys);
+
+    } catch (error){
+        console.log(error);
+        res.status(500).json({ message: "Es ist ein Fehler aufgetreten" });
     }
 }
 
