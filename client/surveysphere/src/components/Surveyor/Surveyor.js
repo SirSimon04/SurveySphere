@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './Surveyor.css'
 import NavBar from '../SurvNavBar/SurvNavBar.js';
 import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
-import { getSurvey } from '../../api';
+import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Surveyor() {
 
@@ -13,6 +14,8 @@ function Surveyor() {
 
   const [selectedAnswers, setSelectedAnswers] = useState([]);
 
+  const token = useSelector(state => state.auth.jwt);
+
   const isMultiselect = false;
 
   //this function is executed once, when the component is loaded
@@ -20,7 +23,7 @@ function Surveyor() {
     loadSurvey();
   }, []);
 
-  //647334aa5e584ce8067d2bcc
+  //647e34d70ea1ab66af49e073
   //id of a survey with some more data
     async function loadSurvey() {
     const dbSurvey = await getSurvey(id);
@@ -49,13 +52,23 @@ function Surveyor() {
   });
 };
 
-  function submitSurvey() {
+  async function submitSurvey() {
+
     console.log(selectedAnswers);
+
+    const postData = {
+      id,
+      selectedAnswers
+    }
+
+    const res = await voteAll(token, postData);
+
+    console.log(res);
   }
 
   return (
     <div className='surveyContainer'>
-      <NavBar />
+      <NavBar title={survey.name}/>
       <div className='surveyCardContainer'>
         {survey?.questions.map((question, index) => (
           <SurveyQuestionCard
