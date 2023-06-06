@@ -37,7 +37,7 @@ function LandingPage() {
         if (event.key === 'Enter') {
             const inputValue = event.target.value;
             if(inputValue === ""){
-                navigate(`/surveyor/647e34d70ea1ab66af49e073`);
+                navigate(`/surveyor/647f1a85cbcc63bc04f45200`);
             }
             else{
                 navigate(`/surveyor/${inputValue}`);

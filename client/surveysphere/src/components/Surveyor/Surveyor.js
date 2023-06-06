@@ -19,8 +19,6 @@ function Surveyor() {
 
   const token = useSelector(state => state.auth.jwt);
 
-  const isMultiselect = false;
-
   //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
@@ -57,7 +55,18 @@ function Surveyor() {
   });
 };
 
+
+  const allQuestionsAnswered = selectedAnswers.every(
+    (answers) => answers.length > 0
+  );
+
   async function submitSurvey() {
+
+    //  if (!allQuestionsAnswered) {
+    //   // Zeige eine Benachrichtigung an den Benutzer, dass nicht alle Fragen beantwortet wurden
+    //   alert('Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
+    //   return; // Beende die Funktion, um die Antworten nicht zu speichern
+    // }
 
     console.log(selectedAnswers);
 
