@@ -13,10 +13,10 @@ function Creator() {
   const token = useSelector(state => state.auth.jwt);
 
   const [title, setTitle] = useState('');
-  const [questionCards, setQuestionCards] = useState([{ question: '', answerOptions: ['', '', ''], singleSelect: true }]);
+  const [questionCards, setQuestionCards] = useState([{ question: '', answerOptions: ['', ''], singleSelect: true }]);
 
   const addQuestionCard = () => {
-    setQuestionCards([...questionCards, { question: '', answerOptions: [''], singleSelect: true }]);
+    setQuestionCards([...questionCards, { question: '', answerOptions: ['', ''], singleSelect: true }]);
   };
 
   const handleQuestionChange = (e, index) => {
