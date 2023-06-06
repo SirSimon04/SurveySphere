@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import './Creator.css';
 import CreaNavBar from '../CreaNavBar/CreaNavBar.js';
 import CreateQuestionCard from '../CreateQuestionCard/CreateQuestionCard';
+import { createSurvey } from '../../api/index';
+import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 function Creator() {
+
+  const navigate = useNavigate();
+
+  const token = useSelector(state => state.auth.jwt);
+
   const [title, setTitle] = useState('');
   const [questionCards, setQuestionCards] = useState([{ question: '', answerOptions: ['', '', ''], singleSelect: true }]);
 
@@ -63,6 +71,34 @@ function Creator() {
     return serverData;
   };
 
+  const uploadSurvey = async () => {
+
+    const data = convertToServerData();
+    
+    try{
+
+      const res = await createSurvey(token, data);
+
+      console.log(res);
+
+      const id = res.data._id;
+
+      alert(`Erfolgreich erstellt ${id}`);
+
+      navigate('/overview');
+
+    } catch (e) {
+      console.log({e});
+      let error;
+      switch(e.response.status){
+        default:
+          error = "Es ist ein unbestimmer Fehler aufgetreten";
+      }
+      alert(error);
+    }
+
+  }
+
   return (
     <div className='creatorContainer'>
       <CreaNavBar title={title} onTitleChange={handleTitleChange} />
@@ -83,7 +119,7 @@ function Creator() {
         <div className='addCardButtonContainer'>
           <button className='addCardButton' onClick={addQuestionCard}>+</button>
         </div>
-        <button onClick={convertToServerData}>Daten an Server senden</button>
+        <button onClick={uploadSurvey}>Hochladen</button>
       </div>
     </div>
   );
