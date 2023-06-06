@@ -2,12 +2,14 @@ import React from 'react';
 import './CreateQuestionCard.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
-function CreateQuestionCard({ question, answerOptions, singleSelect, onQuestionChange, onAnswerOptionChange, onAddAnswerOption, onRemoveAnswerOption, onQuestionTypeChange, onDeleteQuestion }) {
+function CreateQuestionCard({ question, answerOptions, singleSelect, onQuestionChange, onAnswerOptionChange, onAddAnswerOption, onRemoveAnswerOption, onQuestionTypeChange, onDeleteQuestion, questionIndex }) {
   return (
     <div className='basicCard'>
-      <button className='deleteButton' onClick={onDeleteQuestion}>
-        X
-      </button>
+      {questionIndex >= 1 && (
+        <button className='deleteButton' onClick={onDeleteQuestion}>
+          X
+        </button>
+      )}
       <input
         className='answer question'
         placeholder='Frage eingeben:'

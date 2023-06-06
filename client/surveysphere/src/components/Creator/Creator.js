@@ -144,6 +144,7 @@ function Creator() {
             onRemoveAnswerOption={(optionIndex) => removeAnswerOption(index, optionIndex)}
             onQuestionTypeChange={() => handleQuestionTypeChange(index)}
             onDeleteQuestion={() => handleDeleteQuestion(index)}
+            questionIndex={index} 
           />
         ))}
         <div className='addCardButtonContainer'>
