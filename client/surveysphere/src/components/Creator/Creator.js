@@ -4,6 +4,7 @@ import CreaNavBar from '../CreaNavBar/CreaNavBar.js';
 import CreateQuestionCard from '../CreateQuestionCard/CreateQuestionCard';
 
 function Creator() {
+  const [title, setTitle] = useState('');
   const [questionCards, setQuestionCards] = useState([{ question: '', answerOptions: ['', '', ''], singleSelect: true }]);
 
   const addQuestionCard = () => {
@@ -40,12 +41,19 @@ function Creator() {
     setQuestionCards(updatedQuestionCards);
   };
 
+   const handleTitleChange = (e) => {
+      setTitle(e.target.value);
+    };
+
+
   const convertToServerData = () => {
+    console.log()
     const serverData = {
-      name: 'Das ist ein erster Test',
+      name: title,
       isMultiSelect: false,
       questions: questionCards.map((card) => ({
         question: card.question,
+        isSingleSelect: card.singleSelect,
         answerOptions: card.answerOptions.map((option) => ({
           text: option
         }))
@@ -57,7 +65,7 @@ function Creator() {
 
   return (
     <div className='creatorContainer'>
-      <CreaNavBar />
+      <CreaNavBar title={title} onTitleChange={handleTitleChange} />
       <div className='createCardContainer'>
         {questionCards.map((card, index) => (
           <CreateQuestionCard
