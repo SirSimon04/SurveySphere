@@ -34,7 +34,7 @@ function CreateQuestionCard({ question, answerOptions, singleSelect, onQuestionC
       </div>
       <div className='questionType'>
         <label className='questionTypeLabel'>
-          {singleSelect ? 'Single Select' : 'Multi Select'}
+          Single Select
         </label>
         <ToggleSwitch
           onChange={onQuestionTypeChange}
