@@ -35,8 +35,10 @@ function Surveyor() {
   setSelectedAnswers((prevSelectedAnswers) => {
     const newSelectedAnswers = [...prevSelectedAnswers];
 
-    if(!survey.isMultiSelect){
-      newSelectedAnswers[questionIndex] = [answerId]
+    const question = survey.questions[questionIndex];
+
+    if(question.isSingleSelect){
+      newSelectedAnswers[questionIndex] = [answerId];
     }
     else {
       if (newSelectedAnswers[questionIndex].includes(answerId)) {
