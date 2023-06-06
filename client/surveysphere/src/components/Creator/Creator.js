@@ -59,6 +59,12 @@ function Creator() {
       setTitle(e.target.value);
     };
 
+  const allQuestionsAnswered = questionCards.every((card) => {
+    return (
+      card.question.trim() !== '' &&
+      card.answerOptions.every((option) => option.trim() !== '')
+    );
+  });
 
   const convertToServerData = () => {
     console.log()
@@ -79,8 +85,25 @@ function Creator() {
 
   const uploadSurvey = async () => {
 
+    if (title.trim() === '') {
+      alert('Bitte gib einen Titel für die Umfrage ein.');
+      return;
+    }
+
+    const allQuestionsAnswered = questionCards.every((card) => {
+      return (
+        card.question.trim() !== '' &&
+        card.answerOptions.every((option) => option.trim() !== '')
+      );
+    });
+
+    if (!allQuestionsAnswered) {
+      alert('Bitte fülle alle Fragen und Antwortoptionen aus, bevor du die Umfrage hochlädst.');
+      return;
+    }
+
     const data = convertToServerData();
-    
+
     try{
 
       const res = await createSurvey(token, data);
