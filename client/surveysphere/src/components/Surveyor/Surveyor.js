@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Surveyor.css'
-import NavBar from './../NavBar/NavBar.js';
+import NavBar from '../SurvNavBar/SurvNavBar.js';
 import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
 import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
