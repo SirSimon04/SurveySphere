@@ -5,8 +5,11 @@ import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
 import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 function Surveyor() {
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -35,8 +38,10 @@ function Surveyor() {
   setSelectedAnswers((prevSelectedAnswers) => {
     const newSelectedAnswers = [...prevSelectedAnswers];
 
-    if(!survey.isMultiSelect){
-      newSelectedAnswers[questionIndex] = [answerId]
+    const question = survey.questions[questionIndex];
+
+    if(question.isSingleSelect){
+      newSelectedAnswers[questionIndex] = [answerId];
     }
     else {
       if (newSelectedAnswers[questionIndex].includes(answerId)) {
@@ -61,9 +66,23 @@ function Surveyor() {
       selectedAnswers
     }
 
-    const res = await voteAll(token, postData);
+    try {
 
-    console.log(res);
+      const res = await voteAll(token, postData);
+
+      alert("Deine Antworten wurden gespeichert");
+
+      navigate('/overview');
+    } catch (e){
+      console.log({e});
+      let error;
+      switch(e.response.status){
+        default:
+          error = "Es ist ein unbestimmer Fehler aufgetreten";
+      }
+      alert(error);
+    }
+
   }
 
   return (

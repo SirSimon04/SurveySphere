@@ -1,46 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CreateQuestionCard.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
-function CreateQuestionCard({ onDelete }) {
-  const [question, setQuestion] = useState('');
-  const [answerOptions, setAnswerOptions] = useState(['', '', '']);
-  const [singleSelect, setSingleSelect] = useState(true);
-
-  const handleQuestionChange = (e) => {
-    setQuestion(e.target.value);
-  };
-
-  const handleAnswerOptionChange = (e, index) => {
-    const updatedOptions = [...answerOptions];
-    updatedOptions[index] = e.target.value;
-    setAnswerOptions(updatedOptions);
-  };
-
-  const addAnswerOption = () => {
-    setAnswerOptions([...answerOptions, '']);
-  };
-
-  const removeAnswerOption = (index) => {
-    const updatedOptions = [...answerOptions];
-    updatedOptions.splice(index, 1);
-    setAnswerOptions(updatedOptions);
-  };
-
-  const handleQuestionTypeChange = () => {
-    setSingleSelect((prev) => !prev);
-  };
-
+function CreateQuestionCard({ question, answerOptions, singleSelect, onQuestionChange, onAnswerOptionChange, onAddAnswerOption, onRemoveAnswerOption, onQuestionTypeChange, onDeleteQuestion, questionIndex }) {
   return (
     <div className='basicCard'>
-      <button className='closeButton' onClick={() => onDelete()}>
-        X
-      </button>
+      {questionIndex >= 1 && (
+        <button className='deleteButton' onClick={onDeleteQuestion}>
+          X
+        </button>
+      )}
       <input
         className='answer question'
         placeholder='Frage eingeben:'
         value={question}
-        onChange={handleQuestionChange}
+        onChange={onQuestionChange}
       />
       <div className='answerGrid'>
         {answerOptions.map((option, index) => (
@@ -49,28 +23,26 @@ function CreateQuestionCard({ onDelete }) {
               className='answer'
               placeholder='Antwortmöglichkeit eingeben:'
               value={option}
-              onChange={(e) => handleAnswerOptionChange(e, index)}
+              onChange={(e) => onAnswerOptionChange(e, index)}
             />
             {index >= 2 && (
               <button
                 className='closeButton'
-                onClick={() => removeAnswerOption(index)}
+                onClick={() => onRemoveAnswerOption(index)}
               >
                 X
               </button>
             )}
           </div>
         ))}
-        <button className='addOptionButton' onClick={addAnswerOption}>
-          +
-        </button>
+        <button className='addOptionButton' onClick={onAddAnswerOption}>+</button>
       </div>
       <div className='questionType'>
         <label className='questionTypeLabel'>
-          {singleSelect ? 'Single Select' : 'Multi Select'}
+          Single Select
         </label>
         <ToggleSwitch
-          onChange={handleQuestionTypeChange}
+          onChange={onQuestionTypeChange}
           singleSelect={singleSelect}
         />
       </div>

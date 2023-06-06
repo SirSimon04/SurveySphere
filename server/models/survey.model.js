@@ -6,8 +6,7 @@ import mongoose from "mongoose";
 const surveySchema = mongoose.Schema({
     name: { type: String, required: true },
     creator : { type: String, required: true},
-    isMultiSelect: { type: Boolean, required: true }, //if not multiselect, then its single select
-    questions: [ { question: String, answerOptions: [ { text: String, answers: [ { userID: { type: String, required: true}, text: String } ] } ] },  ]
+    questions: [ { question: String, isSingleSelect: { type: Boolean, required: true }, answerOptions: [ { text: String, answers: [ { userID: { type: String, required: true}, text: String } ] } ] },  ]
 });
 
 
