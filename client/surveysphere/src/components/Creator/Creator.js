@@ -19,6 +19,12 @@ function Creator() {
     setQuestionCards([...questionCards, { question: '', answerOptions: ['', ''], singleSelect: true }]);
   };
 
+  const handleDeleteQuestion = (index) => {
+    const updatedQuestions = [...questionCards];
+    updatedQuestions.splice(index, 1);
+    setQuestionCards(updatedQuestions);
+  };
+
   const handleQuestionChange = (e, index) => {
     const updatedQuestionCards = [...questionCards];
     updatedQuestionCards[index].question = e.target.value;
@@ -114,6 +120,7 @@ function Creator() {
             onAddAnswerOption={() => addAnswerOption(index)}
             onRemoveAnswerOption={(optionIndex) => removeAnswerOption(index, optionIndex)}
             onQuestionTypeChange={() => handleQuestionTypeChange(index)}
+            onDeleteQuestion={() => handleDeleteQuestion(index)}
           />
         ))}
         <div className='addCardButtonContainer'>
