@@ -1,32 +1,10 @@
-import React, {useState, useEffect}  from "react";
+import React  from "react";
 import './LandingPage.css';
 import results from './media/results.svg';
 import survey from './media/survey.svg';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-
-export const AnimatedInput = ({placeholder: passedPlaceholder = "", ...passedProps}) => {
-    const [placeholder, setPlaceholder] = useState(passedPlaceholder.slice(0, 0));
-    const [placeholderIndex, setPlaceholderIndex] = useState(0);
-
-
-    useEffect(() => {
-        const intr = setTimeout(() => {
-            setPlaceholder(passedPlaceholder.slice(0, placeholderIndex));
-            if (placeholderIndex + 1 > passedPlaceholder.length) {
-                setPlaceholderIndex(0)
-            } else {
-                setPlaceholderIndex(placeholderIndex + 1)
-            }
-        }, 150);
-        return () => {
-            clearTimeout(intr)
-        }
-    },);
-
-
-    return <input {...passedProps} placeholder={placeholder}/>
-};
+import AnimatedInput from "../AnimatedInput/AnimatedInput.js";
 
 function LandingPage() {
 
