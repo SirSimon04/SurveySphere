@@ -62,11 +62,10 @@ function Surveyor() {
 
   async function submitSurvey() {
 
-    //  if (!allQuestionsAnswered) {
-    //   // Zeige eine Benachrichtigung an den Benutzer, dass nicht alle Fragen beantwortet wurden
-    //   alert('Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
-    //   return; // Beende die Funktion, um die Antworten nicht zu speichern
-    // }
+     if (!allQuestionsAnswered) {
+      alert('Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
+      return; 
+    }
 
     console.log(selectedAnswers);
 
