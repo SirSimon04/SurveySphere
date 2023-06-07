@@ -6,6 +6,7 @@ import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import SubmitButton from '../SubmitButton/SubmitButton';
 
 function Surveyor() {
 
@@ -113,7 +114,7 @@ function Surveyor() {
         <SurveyQuestionCard /> */}
         <div className='endSequenz'>
           <p>Vielen Dank für deine Teilnahme!</p>
-          <button onClick={() => submitSurvey()}>Abschicken!</button>
+          <SubmitButton onClick={() => submitSurvey()} text={'Abschicken'}/>
         </div>
       </div>
     </div>  

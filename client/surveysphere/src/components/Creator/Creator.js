@@ -5,6 +5,7 @@ import CreateQuestionCard from '../CreateQuestionCard/CreateQuestionCard';
 import { createSurvey } from '../../api/index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import SubmitButton from '../SubmitButton/SubmitButton';
 
 function Creator() {
 
@@ -149,8 +150,8 @@ function Creator() {
         ))}
         <div className='addCardButtonContainer'>
           <button className='addCardButton' onClick={addQuestionCard}>+</button>
+          <SubmitButton onClick={uploadSurvey} text={'Hochladen!'}/>
         </div>
-        <button onClick={uploadSurvey}>Hochladen</button>
       </div>
     </div>
   );
