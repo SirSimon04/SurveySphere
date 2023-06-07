@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Auth from "./components/Auth/Auth.js";
@@ -15,7 +14,7 @@ function App() {
           <Route path='/' element={<Auth />} />
           <Route path='/overview' element={<LandingPage />} />
           <Route path='/creator' element={<Creator />} />
-          <Route path='/surveyor' element={<Surveyor />} />
+          <Route path='/surveyor/:id' element={<Surveyor />} />
           <Route path='/reviewer' element={<Reviewer />} />
         </Routes>
       </body>

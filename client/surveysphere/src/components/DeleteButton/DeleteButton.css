@@ -1,0 +1,25 @@
+.deleteButton {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .deleteIcon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+  }
+
+  .questionDelete {
+    top: -12px;
+    right: -12px;
+  }
+  
+  .questionDeleteIcon {
+    width: 35px;
+    height: 35px;
+  }

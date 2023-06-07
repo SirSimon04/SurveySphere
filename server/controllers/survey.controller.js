@@ -1,62 +1,144 @@
 import SurveyModel from "../models/survey.model.js";
 
+export const find = async (req, res) => {
+    const { id: surveyID } = req.params;
+
+    try{
+
+        const survey = await SurveyModel.findById(surveyID);
+
+        if (!survey) {
+            res.status(404).json({ error: "Umfrage nicht gefunden"});
+        return;
+        }
+
+        return res.json(survey);
+
+    } catch (error){
+        res.status(500).json({ message: "Something went wrong1" });
+    }
+}
+
+export const getOwn = async (req, res) => {
+
+    try {
+
+        const surveys = await SurveyModel.find({ creator: req.userId });
+
+        res.json(surveys);
+
+    } catch (error){
+        console.log(error);
+        res.status(500).json({ message: "Es ist ein Fehler aufgetreten" });
+    }
+}
+
 export const create = async (req, res) => {
     const survey = req.body;
+
+    //TODO: destructuring of body, check if values are all given
 
     const newSurvey = new SurveyModel(survey);
 
     try{
         
+        newSurvey.creator = req.userId;
+
         await newSurvey.save();
 
         res.status(201).json(newSurvey);
 
     } catch (error) {
-    res.status.json({ message: "Something went wrong" });
+        console.log(error);
+        res.json({ message: "Something went wrong" });
   }
 }
+
+export const voteAll = async (req, res) => {
+  try {
+    const { id: surveyId, selectedAnswers: answers} = req.body;
+    const userID = req.userId;
+
+    // Überprüfen, ob die Umfrage existiert
+    const survey = await SurveyModel.findById(surveyId);
+    if (!survey) {
+      return res.status(404).json({ message: 'Umfrage nicht gefunden' });
+    }
+
+  answers.forEach((answerIds, questionIndex) => {
+      const question = survey.questions[questionIndex];
+      answerIds.forEach((answerId) => {
+        const answerOption = question.answerOptions.find(
+          (option) => option._id.toString() === answerId
+        );
+        if (answerOption) {
+          answerOption.answers.push({ userID });
+        }
+      });
+    });
+
+    // Speichern Sie die geänderte Umfrage
+    await survey.save();
+
+    res.status(200).json({ message: 'Alle Antworten wurden erfolgreich gespeichert' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Es ist ein Fehler aufgetreten' });
+  }
+};
 
 export const vote = async (req, res) => {
     try{
 
-        const { id: _id, aId: answerOptionsId } = req.params;
+        const { surveyID, questionID, answerOptionID } = req.body;
 
-        const newSurvey = await SurveyModel.findByIdAndUpdate(_id, 
-                {
-                    $push: {
-                    "answerOptions.$[option].answers": {
-                            userID: req.userId,
-                            text: "Moin"
-                        },
-                    },    
-                },
-                {
-                    new: true,
-                    arrayFilters: [ { "option._id": answerOptionsId } ]
-                },
-                // {
-                //     $set: {
-                //     answerOptions: [
-                //         {
-                //         id: answerOptionsId,
-                //         answers: [
-                //             {
-                //                 userID: req.userID,
-                //             },
-                //         ],
-                //         },
-                //     ],
-                //     },
-                // },
-            //     {
-            //     new: true,
+        const userID = req.userId;
 
-            // },
-        );
+        const survey = await SurveyModel.findById(surveyID);
 
-        console.log();
+        if (!survey) {
+            res.status(404).json({ error: "Umfrage nicht gefunden"});
+        return;
+        }
 
-        res.json(newSurvey);
+        const question = survey.questions.find((q) => q._id.toString() === questionID);
+
+        if (!question) {
+            res.status(404).json({ error: "Frage nicht gefunden"});
+        return;
+        }
+
+        const answerOption = question.answerOptions.find((option) => option._id.toString() === answerOptionID);
+
+        if (!answerOption) {
+            res.status(404).json({ error: "Antwortoption nicht gefunden"});
+        return;
+        }
+
+        if(!survey.isMultiSelect){
+            question.answerOptions.forEach((option) => {
+                const existingAnswer = option.answers.find((answer) => answer.userID === userID);
+            if (existingAnswer) {
+                option.answers.pull(existingAnswer._id);
+            }
+        });
+        }
+
+        const existingAnswer = answerOption.answers.find((answer) => answer.userID === userID);
+
+        if (existingAnswer) {
+            return res.status(400).json({ error: "Du hast bereits eine Antwort für diese Frage abgegeben abgegeben" });
+        }
+
+        const newAnswer = {
+            userID: userID,
+        };
+
+        answerOption.answers.push(newAnswer);
+
+        await survey.save();
+
+        res.json(survey);
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: "Something went wrong" });

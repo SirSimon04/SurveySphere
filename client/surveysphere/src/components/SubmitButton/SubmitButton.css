@@ -1,0 +1,9 @@
+.submitButton {
+    padding: 10px;
+    background-color: #00a22b;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 1em;
+}
