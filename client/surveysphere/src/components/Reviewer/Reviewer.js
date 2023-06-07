@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getOwnSurveys } from '../../api/index';
 import { useSelector } from 'react-redux';
+import './Reviewer.css';
 
-function Reviewer() {
+const Reviewer = () => {
+  const navigate = useNavigate();
   const token = useSelector((state) => state.auth.jwt);
   const [surveys, setSurveys] = useState([]);
 
@@ -23,13 +26,26 @@ function Reviewer() {
     console.log(surveys);
   }, [surveys]);
 
-  return <div>
-    {surveys.map((survey) => (
-        <div key={survey._id}>
-          <h3>{survey.name}</h3>
+  const handleSurveyClick = (id) => {
+    navigate(`/result/${id}`);
+  };
+
+  return (
+    <div className="surveyListContainer">
+      <h1 className="surveyListTitle">Deine erstellen Umfragen</h1>
+      {surveys.map((survey) => (
+        <div
+          key={survey.id}
+          className="surveyItem"
+          onClick={() => handleSurveyClick(survey._id)}
+        >
+          <a className="surveyItemLink" href="#">
+            {survey.name}
+          </a>
         </div>
       ))}
-  </div>;
-}
+    </div>
+  );
+};
 
 export default Reviewer;
