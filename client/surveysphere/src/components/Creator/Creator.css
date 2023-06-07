@@ -17,8 +17,9 @@
   
   .addCardButton {
     font-size: 24px;
+    font-weight: bold;
     background-color: white;
-    color: #00a22b;
+    color: #6a63f6;
     border: 1px solid #ccc;
     border-radius: 50%;
     width: 50px;
