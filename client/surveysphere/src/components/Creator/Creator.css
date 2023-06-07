@@ -13,6 +13,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  margin-top: 20px;
   }
   
   .addCardButton {
@@ -25,4 +31,15 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
+    position: absolute;
+    right: -25px;
+    top: -65px;
+    z-index: 1;
   }
+  
+  
+  
+  
+  
+  
+  

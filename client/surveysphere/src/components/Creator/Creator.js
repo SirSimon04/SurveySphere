@@ -150,6 +150,9 @@ function Creator() {
         ))}
         <div className='addCardButtonContainer'>
           <button className='addCardButton' onClick={addQuestionCard}>+</button>
+        </div>
+        <div className='endSequenz'>
+          <p>Dein Umfrage ist fertig?</p>
           <SubmitButton onClick={uploadSurvey} text={'Hochladen!'}/>
         </div>
       </div>
