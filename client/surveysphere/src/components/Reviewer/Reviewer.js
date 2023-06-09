@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getOwnSurveys } from '../../api/index';
 import { useSelector } from 'react-redux';
+import './Reviewer.css';
 
-function Reviewer() {
+const Reviewer = () => {
+  const navigate = useNavigate();
   const token = useSelector((state) => state.auth.jwt);
   const [surveys, setSurveys] = useState([]);
 
@@ -42,7 +45,8 @@ function Reviewer() {
           </a>
         </div>
       ))}
-  </div>;
-}
+    </div>
+  );
+};
 
 export default Reviewer;
