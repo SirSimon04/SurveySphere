@@ -23,6 +23,7 @@ function Surveyor() {
   //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
+    // eslint-disable-next-line
   }, []);
 
   //647e34d70ea1ab66af49e073
@@ -77,7 +78,7 @@ function Surveyor() {
 
     try {
 
-      const res = await voteAll(token, postData);
+      await voteAll(token, postData);
 
       alert("Deine Antworten wurden gespeichert");
 

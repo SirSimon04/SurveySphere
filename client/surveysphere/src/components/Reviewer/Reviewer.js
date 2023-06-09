@@ -8,6 +8,7 @@ function Reviewer() {
 
   useEffect(() => {
     loadSurvey();
+    // eslint-disable-next-line
   }, []);
 
   async function loadSurvey() {
@@ -23,10 +24,22 @@ function Reviewer() {
     console.log(surveys);
   }, [surveys]);
 
-  return <div>
-    {surveys.map((survey) => (
-        <div key={survey._id}>
-          <h3>{survey.name}</h3>
+  const handleSurveyClick = (id) => {
+    navigate(`/result/${id}`);
+  };
+
+  return (
+    <div className="surveyListContainer">
+      <h1 className="surveyListTitle">Deine erstellen Umfragen</h1>
+      {surveys.map((survey) => (
+        <div
+          key={survey.id}
+          className="surveyItem"
+          onClick={() => handleSurveyClick(survey._id)}
+        >
+          <a className="surveyItemLink" href="/result">
+            {survey.name}
+          </a>
         </div>
       ))}
   </div>;

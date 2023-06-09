@@ -60,12 +60,6 @@ function Creator() {
       setTitle(e.target.value);
     };
 
-  const allQuestionsAnswered = questionCards.every((card) => {
-    return (
-      card.question.trim() !== '' &&
-      card.answerOptions.every((option) => option.trim() !== '')
-    );
-  });
 
   const convertToServerData = () => {
     console.log()

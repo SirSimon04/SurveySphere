@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './Auth.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from "./authSlice";
 import { signIn, signUp } from "../../api/index";
 
 const Auth = () => {
 
-  const jwt = useSelector(state => state.auth.jwt);
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
