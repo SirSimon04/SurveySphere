@@ -2,10 +2,11 @@ import React from 'react';
 import './CreateQuestionCard.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import DeleteButton  from '../DeleteButton/DeleteButton';
+import BasicCard from '../BasicCard/BasicCard';
 
 function CreateQuestionCard({ question, answerOptions, singleSelect, onQuestionChange, onAnswerOptionChange, onAddAnswerOption, onRemoveAnswerOption, onQuestionTypeChange, onDeleteQuestion, questionIndex }) {
   return (
-    <div className='basicCard'>
+    <BasicCard>
       {questionIndex >= 1 && (
         <DeleteButton className='questionDelete' onClick={onDeleteQuestion}/>
       )}
@@ -40,7 +41,7 @@ function CreateQuestionCard({ question, answerOptions, singleSelect, onQuestionC
           singleSelect={singleSelect}
         />
       </div>
-    </div>
+    </BasicCard>
   );
 }
 
