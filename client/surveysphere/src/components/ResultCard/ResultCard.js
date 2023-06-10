@@ -47,9 +47,16 @@ function ResultCard({question}) {
 
     const chartOptions = {
         plugins: {
-        legend: {
+          legend: {
             display: false, // Legende ausblenden
+          },
         },
+        scales: {
+          y: {
+            ticks: {
+              precision: 0,
+            },
+          },
         },
     };
 
