@@ -6,18 +6,20 @@ import Creator from "./components/Creator/Creator.js";
 import Surveyor from "./components/Surveyor/Surveyor.js";
 import Reviewer from "./components/Reviewer/Reviewer.js";
 import Result from "./components/Result/Result";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
     <BrowserRouter>
       <body>
         <Routes>
-          <Route path='/' element={<Auth />} />
+          <Route path='/auth' element={<Auth />} />
           <Route path='/overview' element={<LandingPage />} />
           <Route path='/creator' element={<Creator />} />
           <Route path='/surveyor/:id' element={<Surveyor />} />
           <Route path='/reviewer' element={<Reviewer />} />
           <Route path='/result' element={<Result />} />
+          <Route path='*' element={<NotFound />}/>
         </Routes>
       </body>
     </BrowserRouter>
