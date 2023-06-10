@@ -28,7 +28,7 @@ const Reviewer = () => {
   }, [surveys]);
 
   const handleSurveyClick = (id) => {
-    navigate(`/result/${id}`);
+    navigate(`/result`);
   };
 
   return (

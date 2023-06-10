@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage/LandingPage.js";
 import Creator from "./components/Creator/Creator.js";
 import Surveyor from "./components/Surveyor/Surveyor.js";
 import Reviewer from "./components/Reviewer/Reviewer.js";
+import Result from "./components/Result/Result";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/creator' element={<Creator />} />
           <Route path='/surveyor/:id' element={<Surveyor />} />
           <Route path='/reviewer' element={<Reviewer />} />
+          <Route path='/result' element={<Result />} />
         </Routes>
       </body>
     </BrowserRouter>
