@@ -20,20 +20,30 @@ ChartJS.register(
   Legend
 );
 
-function ResultCard() {
+function ResultCard({question}) {
 
-  const chartData = {
-        labels: ['1', '2', '3', '4'],
-        datasets: [
+  function buildChartData(question) {
+    
+    const labels = question.answerOptions.map((option, index) => '' + (index + 1).toString() + ".");
+    const data = question.answerOptions.map((option) => option.answers.length);
+
+    const chartData = {
+      labels: labels,
+      datasets: [
         {
-            label: '', // Setze das Label der Datenreihe auf eine leere Zeichenkette
-            data: [10, 20, 30, 40],
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
+          label: '',
+          data: data,
+          backgroundColor: 'rgba(75, 192, 192, 0.6)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
         },
-        ],
+      ],
     };
+
+    return chartData;
+  }
+  
+  const chartData = buildChartData(question);
 
     const chartOptions = {
         plugins: {
@@ -45,13 +55,12 @@ function ResultCard() {
 
   return (
     <BasicCard>
-      <h2>Also das hier ist die erste Frage?</h2>
+      <h2>{question.question}</h2>
       <Bar data={chartData} options={chartOptions}/>
       <ol>
-          <li>Das hier ist die erste Antwortmöglichkeit</li>
-          <li>Das hier ist die erste Antwortmöglichkeit</li>
-          <li>Das hier ist die erste Antwortmöglichkeit</li>
-          <li>Das hier ist die erste Antwortmöglichkeit</li>
+          {question.answerOptions.map(option => (
+            <li>{option.text}</li>
+          ))}
       </ol>
     </BasicCard>
   )

@@ -27,8 +27,8 @@ const Reviewer = () => {
     console.log(surveys);
   }, [surveys]);
 
-  const handleSurveyClick = (id) => {
-    navigate(`/result`);
+  const handleSurveyClick = (survey) => {
+    navigate(`/result`, { state: { survey } });
   };
 
   return (
@@ -38,7 +38,7 @@ const Reviewer = () => {
         <div
           key={survey.id}
           className="surveyItem"
-          onClick={() => handleSurveyClick(survey._id)}
+          onClick={() => handleSurveyClick(survey)}
         >
           <a className="surveyItemLink" href="/result">
             {survey.name}
