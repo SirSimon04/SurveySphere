@@ -2,13 +2,14 @@
 
 <!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/2c5a5a29-b440-4d68-a7ce-8e3b451bbe30/deploy-status)](https://app.netlify.com/sites/serene-peony-70ab98/deploys) -->
 
-## Struktur der Website
+## Struktur und Aufbau der Website
 
 ### Willkommensseite
 Das ist die erste Seite, auf die der Nutzer geleitet wird, wenn er die Website besucht. Hier erfolgt eine Erklärung, wie die Applikation zu bedienen ist, damit der Nutzer weiß, was zu tun ist. Von dieser Seite kann auf die Anmelde-Seite navigiert werden.
 
 ### Anmelde-Seite
 Auf dieser Seite kann der Nutzer sich entweder anmelden, wenn er schon eine Account hat, oder einen neuen Account erstellen. Unabhängig davon, ob der Nutzer sich anmeldet oder registriert, wird er danach auf die Übersichtsseite geleitet.
+Die Seite ist simpel aufgebaut: Zentral ist die Komponente, in der mit Textfeldern Informationen eingegeben werden. Über einen Link am unteren Ende der Komponente kann zwischen Anmeldung und Registrierung gewechselt werden. Unter den Textfeldern ist ein Knopf, der durch den die Anmelde- oder Registrierung ausgeführt werden kann.
 
 ### Übersichtsseite
 Diese Seite stellt den zentralen Bedienpunkt der Anwendung dar. Von hier aus gibt es verschiedene Dinge, die der Nutzer tun kann. Die Eingabe der ID einer Umfrage ist möglich, darauf folgt eine Navigation auf die Antwortseite. Außerdem ist es möglich, auf die Erstellseite und die Ergebnisseite zu navigieren.
