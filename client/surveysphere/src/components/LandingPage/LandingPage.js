@@ -5,6 +5,8 @@ import survey from './media/survey.svg';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import AnimatedInput from "../AnimatedInput/AnimatedInput.js";
+import NavBar from "../NavBar/NavBar";
+import CancelButton from "../CancelButton/CancelButton";
 
 function LandingPage() {
 
@@ -31,8 +33,16 @@ function LandingPage() {
         navigate('/reviewer');
     }
 
+    const handleLogout = () => {
+        navigate('/auth');
+    }
+
     return (
     <>
+    <NavBar 
+        middle={<h1>Moin Meister</h1>}
+        right={<CancelButton text={'Ausloggen'} handleCancel={handleLogout} />}
+    />
     <div class="page">
     <h1 class="title">Hallo, {userName}</h1>
 

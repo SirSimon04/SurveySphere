@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import CancelButton from '../CancelButton/CancelButton';
 import './CreaNavBar.css';
 
 const CreaNavBar = ({ title, onTitleChange }) => {
@@ -25,7 +26,7 @@ const CreaNavBar = ({ title, onTitleChange }) => {
           ></input>
         </div>
         <div className="right">
-          <button className='cancelButton' onClick={handleCancel}>Erstellen abbrechen</button>
+          <CancelButton handleCancel={handleCancel} text={'Erstellen abbrechen'}/>
         </div>
       </div>
     );
