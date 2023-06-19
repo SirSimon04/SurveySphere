@@ -7,24 +7,21 @@ export const authSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-        state.jwt = action.payload.jwt;
-        state.mail = action.payload.mail;
-        state.id = action.payload.id;
-        state.userName = action.payload.userName
+      state.jwt = action.payload.jwt;
+      state.mail = action.payload.mail;
+      state.id = action.payload.id;
+      state.userName = action.payload.userName;
+    },
+    logout: (state, _) => {
+      state.jwt = null;
+      state.mail = null;
+      state.id = null;
+      state.userName = null;
     }
-    // increment: (state) => {
-    //   state.value += 1
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload
-    // },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login } = authSlice.actions
+export const { login, logout } = authSlice.actions
 
 export default authSlice.reducer

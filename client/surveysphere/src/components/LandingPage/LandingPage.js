@@ -7,11 +7,14 @@ import { useSelector } from 'react-redux';
 import AnimatedInput from "../AnimatedInput/AnimatedInput.js";
 import NavBar from "../NavBar/NavBar";
 import CancelButton from "../CancelButton/CancelButton";
+import { useDispatch } from 'react-redux';
+import { logout } from "../Auth/authSlice";
 
 function LandingPage() {
 
     const userName = useSelector(state => state.auth.userName);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -34,6 +37,7 @@ function LandingPage() {
     }
 
     const handleLogout = () => {
+        dispatch(logout());
         navigate('/auth');
     }
 
