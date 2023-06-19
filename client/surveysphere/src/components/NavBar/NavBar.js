@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import './NavBar.css';
 
-const NavBar = ({ title, onTitleChange, middle, right, showGreeting = false }) => {
+const NavBar = ({ onTitleChange, middle, right, showGreeting = false }) => {
 
   const userName = useSelector(state => state.auth.userName);
 

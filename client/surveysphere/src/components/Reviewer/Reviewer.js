@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { getOwnSurveys } from '../../api/index';
 import { useSelector } from 'react-redux';
 import './Reviewer.css';
+import NavBar from '../NavBar/NavBar';
+import CancelButton from '../CancelButton/CancelButton';
+import LogoButton from '../LogoButton/LogoButton';
 
 const Reviewer = () => {
   const navigate = useNavigate();
@@ -32,20 +35,26 @@ const Reviewer = () => {
   };
 
   return (
-    <div className="surveyListContainer">
-      <h1 className="surveyListTitle">Deine erstellen Umfragen</h1>
-      {surveys.map((survey) => (
-        <div
-          key={survey.id}
-          className="surveyItem"
-          onClick={() => handleSurveyClick(survey)}
-        >
-          <a className="surveyItemLink" href="/result">
-            {survey.name}
-          </a>
-        </div>
-      ))}
-    </div>
+    <>
+      <NavBar 
+          showGreeting={true}
+          middle={<h1 className="surveyListTitle">Deine erstellen Umfragen</h1>}
+          right={<LogoButton />}
+        />
+      <div className="surveyListContainer">
+        {surveys.map((survey) => (
+          <div
+            key={survey.id}
+            className="surveyItem"
+            onClick={() => handleSurveyClick(survey)}
+          >
+            <a className="surveyItemLink" href="/result">
+              {survey.name}
+            </a>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
