@@ -44,11 +44,10 @@ function LandingPage() {
     return (
     <>
     <NavBar 
-        middle={<h1>Moin Meister</h1>}
+        middle={<h1 class="title">Hallo, {userName}</h1>}
         right={<CancelButton text={'Ausloggen'} handleCancel={handleLogout} />}
     />
     <div class="page">
-    <h1 class="title">Hallo, {userName}</h1>
 
         <div class="inputContainer">
             {/* <input class="inputField" type="text" placeholder="Enter ID to join survey"></input>     */}

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './Creator.css';
-import CreaNavBar from '../CreaNavBar/CreaNavBar.js';
 import CreateQuestionCard from '../CreateQuestionCard/CreateQuestionCard';
 import { createSurvey } from '../../api/index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import SubmitButton from '../SubmitButton/SubmitButton';
+import NavBar from '../NavBar/NavBar';
+import CancelButton from '../CancelButton/CancelButton';
 
 function Creator() {
 
@@ -58,6 +59,10 @@ function Creator() {
 
    const handleTitleChange = (e) => {
       setTitle(e.target.value);
+    };
+
+    const handleCancel = (event) => {
+      navigate("/overview");
     };
 
 
@@ -125,7 +130,19 @@ function Creator() {
 
   return (
     <div className='creatorContainer'>
-      <CreaNavBar title={title} onTitleChange={handleTitleChange} />
+      <NavBar 
+      showGreeting={true}
+        middle={<input
+            id='titleInput'
+            placeholder='Titel eingeben'
+            value={title}
+            onChange={handleTitleChange}
+          ></input>}
+        right={<CancelButton 
+                  handleCancel={handleCancel} 
+                  text={'Erstellen abbrechen'}/>
+              }
+      />
       <div className='createCardContainer'>
         {questionCards.map((card, index) => (
           <CreateQuestionCard

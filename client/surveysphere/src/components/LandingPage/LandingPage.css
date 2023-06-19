@@ -17,12 +17,12 @@
     color: #333;
     outline: none;
   }
-  
+
   .inputField:focus {
     border-color: #0066cc;
     box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
   }
-  
+
 
   .inputContainer {
     text-align: center;
@@ -75,4 +75,5 @@
     align-items: center;
     text-align: center;
     margin: 20px;
+    padding-top: 8%;
   }
