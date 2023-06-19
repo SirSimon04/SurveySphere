@@ -1,7 +1,8 @@
 import React from 'react';
 import './Result.css';
 import ResultCard from '../ResultCard/ResultCard';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 
 function Result() {
   const location = useLocation();
@@ -9,12 +10,25 @@ function Result() {
 
   console.log({survey})
 
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate('/reviewer');
+  };
+
   return (
-    <div className="resultContainer">
-      {survey && survey.questions.map((question) => (
-        <ResultCard question={question} />
-      ))}
-    </div>
+    <>
+      <NavBar 
+        middle={<h1>{survey.name}</h1>}
+        right={<button onClick={handleBackClick}>Zurück</button>}
+      />
+      <div className="resultContainer">
+        {survey && survey.questions.map((question) => (
+          <ResultCard question={question} />
+        ))}
+      </div>
+    </>
+    
   );
 }
 
