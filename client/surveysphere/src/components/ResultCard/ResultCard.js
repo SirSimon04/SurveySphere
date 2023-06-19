@@ -33,8 +33,8 @@ function ResultCard({question}) {
         {
           label: '',
           data: data,
-          backgroundColor: 'rgba(75, 192, 192, 0.6)',
-          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: '#6A63F6',
+          borderColor: '#6A63F6',
           borderWidth: 1,
         },
       ],
