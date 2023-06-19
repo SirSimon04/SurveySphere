@@ -8,6 +8,7 @@ import Reviewer from "./components/Reviewer/Reviewer.js";
 import Result from "./components/Result/Result";
 import NotFound from "./components/NotFound/NotFound";
 import StartingPage from "./components/StartingPage/StartingPage";
+import Impressum from "./components/Impressum/Impressum";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/surveyor/:id' element={<Surveyor />} />
           <Route path='/reviewer' element={<Reviewer />} />
           <Route path='/result' element={<Result />} />
+          <Route path='/impressum' element={<Impressum />}/>
           <Route path='*' element={<NotFound />}/>
         </Routes>
       </body>
