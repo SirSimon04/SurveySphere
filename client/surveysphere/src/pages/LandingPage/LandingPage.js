@@ -1,4 +1,4 @@
-import React  from "react";
+import React, { useState }  from "react";
 import './LandingPage.css';
 import results from './media/results.svg';
 import survey from './media/survey.svg';
@@ -9,6 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import CancelButton from "../../components/CancelButton/CancelButton";
 import { useDispatch } from 'react-redux';
 import { logout } from "../AuthPage/authSlice";
+import SubmitButton from "../../components/SubmitButton/SubmitButton";
 
 function LandingPage() {
 
@@ -16,17 +17,26 @@ function LandingPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [surveyIDInput, setSurveyIDInput] = useState("");
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            const inputValue = event.target.value;
-            if(inputValue === ""){
-                navigate(`/surveyor/647f1a85cbcc63bc04f45200`);
-            }
-            else{
-                navigate(`/surveyor/${inputValue}`);
-            }
+            handleSurveyClick();
         }
     };
+
+    const handleSurveyClick = () => {
+        if(surveyIDInput === ""){
+            navigate(`/surveyor/647f1a85cbcc63bc04f45200`);
+        }
+        else{
+            navigate(`/surveyor/${surveyIDInput}`);
+        }
+    }
+
+    const handleInputChange = (event) => {
+        setSurveyIDInput(event.taget.value);
+    }
 
     const onNewClick = () => {
         navigate('/creator');
@@ -51,7 +61,16 @@ function LandingPage() {
 
         <div class="inputContainer">
             {/* <input class="inputField" type="text" placeholder="Enter ID to join survey"></input>     */}
-            <AnimatedInput onKeyDown={handleKeyDown} class="inputField" placeholder="Enter an ID to join survey"/>
+            <AnimatedInput 
+            onKeyDown={handleKeyDown} 
+            class="inputField" 
+            placeholder="Enter an ID to join survey"
+            onChange={handleInputChange}
+            />
+            <SubmitButton 
+            text="Los gehts"
+            onClick={handleSurveyClick}
+            />
         </div>
 
         <div class="cardContainer">
