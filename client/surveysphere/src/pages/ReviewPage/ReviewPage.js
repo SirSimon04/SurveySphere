@@ -4,8 +4,8 @@ import { getOwnSurveys } from '../../api/index';
 import { useSelector } from 'react-redux';
 import './ReviewPage.css';
 import NavBar from '../../components/NavBar/NavBar';
-import CancelButton from '../../components/CancelButton/CancelButton';
 import LogoButton from '../../components/LogoButton/LogoButton';
+import copyImg from './media/copy.png';
 
 const ReviewPage = () => {
   const navigate = useNavigate();
@@ -34,6 +34,12 @@ const ReviewPage = () => {
     navigate(`/result`, { state: { survey } });
   };
 
+  const copySurveyId = (surveyId) => {
+    console.log(surveyId)
+    navigator.clipboard.writeText(surveyId);
+    // alert('ID wurde kopiert!');
+  };
+
   return (
     <>
       <NavBar 
@@ -48,9 +54,10 @@ const ReviewPage = () => {
             className="surveyItem"
             onClick={() => handleSurveyClick(survey)}
           >
-            <a className="surveyItemLink" href="/result">
-              {survey.name}
-            </a>
+            <p>{survey.name}</p>
+            <button className='copyButton' onClick={(event) => { event.stopPropagation(); copySurveyId(survey._id)}}>
+              <img className='copyImage' src={copyImg} alt="" />
+            </button>
           </div>
         ))}
       </div>

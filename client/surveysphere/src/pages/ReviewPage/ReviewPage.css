@@ -17,6 +17,16 @@
     background-color: #f2f2f2;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+}
+
+.surveyItem p {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.surveyItem button {
+    flex-shrink: 0;
 }
 
 .surveyItem:hover {
@@ -26,4 +36,13 @@
 .surveyItemLink {
     text-decoration: none;
     color: #333;
+}
+
+.copyButton {
+    border: none;
+}
+
+.copyImage {
+    width: 30px;
+    height: auto;
 }
