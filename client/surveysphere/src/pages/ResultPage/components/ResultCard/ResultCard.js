@@ -1,5 +1,5 @@
 import React from 'react'
-import BasicCard from '../BasicCard/BasicCard';
+import BasicCard from '../../../../components/BasicCard/BasicCard';
 import {
   Chart as ChartJS,
   CategoryScale,

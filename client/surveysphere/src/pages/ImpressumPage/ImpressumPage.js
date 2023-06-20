@@ -1,7 +1,7 @@
 import React from 'react'
-import './Impressum.css'
+import './ImpressumPage.css'
 
-function Impressum() {
+function ImpressumPage() {
   return (
     <div className='impressum-container'>
         <h1>Impressum</h1>
@@ -35,4 +35,4 @@ function Impressum() {
   );
 }
 
-export default Impressum
+export default ImpressumPage

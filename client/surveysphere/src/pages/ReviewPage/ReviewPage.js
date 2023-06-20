@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getOwnSurveys } from '../../api/index';
 import { useSelector } from 'react-redux';
-import './Reviewer.css';
-import NavBar from '../NavBar/NavBar';
-import CancelButton from '../CancelButton/CancelButton';
-import LogoButton from '../LogoButton/LogoButton';
+import './ReviewPage.css';
+import NavBar from '../../components/NavBar/NavBar';
+import CancelButton from '../../components/CancelButton/CancelButton';
+import LogoButton from '../../components/LogoButton/LogoButton';
 
-const Reviewer = () => {
+const ReviewPage = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.jwt);
   const [surveys, setSurveys] = useState([]);
@@ -58,4 +58,4 @@ const Reviewer = () => {
   );
 };
 
-export default Reviewer;
+export default ReviewPage;

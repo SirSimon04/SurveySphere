@@ -1,8 +1,8 @@
 import React from 'react'
 import notFound from './media/404.svg'
-import './NotFound.css'
+import './NotFoundPage.css'
 
-function NotFound() {
+function NotFoundPage() {
   return (
     <div className="imageContainer">
         <img src={notFound} alt="Not found" />
@@ -10,4 +10,4 @@ function NotFound() {
   )
 }
 
-export default NotFound
+export default NotFoundPage

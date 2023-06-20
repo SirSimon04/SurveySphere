@@ -1,10 +1,10 @@
 import React from 'react';
-import './Result.css';
-import ResultCard from '../ResultCard/ResultCard';
+import './ResultPage.css';
+import ResultCard from './components/ResultCard/ResultCard';
 import { useLocation, useNavigate } from 'react-router-dom';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 
-function Result() {
+function ResultPage() {
   const location = useLocation();
   const survey = location.state?.survey;
 
@@ -32,6 +32,6 @@ function Result() {
   );
 }
 
-export default Result;
+export default ResultPage;
 
 

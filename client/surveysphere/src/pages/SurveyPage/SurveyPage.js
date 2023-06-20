@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import './Surveyor.css'
-import NavBar from '../NavBar/NavBar';
-import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
+import './SurveyPage.css'
+import NavBar from '../../components/NavBar/NavBar';
+import SurveyQuestionCard from './components/SurveyQuestionCard/SurveyQuestionCard.js';
 import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import SubmitButton from '../SubmitButton/SubmitButton';
-import CancelButton from '../CancelButton/CancelButton';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import CancelButton from '../../components/CancelButton/CancelButton';
 
-function Surveyor() {
+function SurveyPage() {
 
   const navigate = useNavigate();
 
@@ -130,4 +130,4 @@ function Surveyor() {
   )
 }
 
-export default Surveyor
+export default SurveyPage

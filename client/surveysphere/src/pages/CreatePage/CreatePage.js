@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import './Creator.css';
-import CreateQuestionCard from '../CreateQuestionCard/CreateQuestionCard';
+import './CreatePage.css';
+import CreateQuestionCard from '../../components/CreateQuestionCard/CreateQuestionCard';
 import { createSurvey } from '../../api/index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import SubmitButton from '../SubmitButton/SubmitButton';
-import NavBar from '../NavBar/NavBar';
-import CancelButton from '../CancelButton/CancelButton';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import NavBar from '../../components/NavBar/NavBar';
+import CancelButton from '../../components/CancelButton/CancelButton';
 
-function Creator() {
+function CreatePage() {
 
   const navigate = useNavigate();
 
@@ -171,4 +171,4 @@ function Creator() {
   );
 }
 
-export default Creator;
+export default CreatePage;
