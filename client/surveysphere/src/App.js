@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Auth from "./pages/Auth/Auth.js";
-import LandingPage from "./components/LandingPage/LandingPage.js";
+import AuthPage from "./pages/AuthPage/AuthPage.js";
+import LandingPage from "./pages/LandingPage/LandingPage.js";
 import Creator from "./components/Creator/Creator.js";
 import Surveyor from "./components/Surveyor/Surveyor.js";
 import Reviewer from "./components/Reviewer/Reviewer.js";
 import Result from "./components/Result/Result";
 import NotFound from "./components/NotFound/NotFound";
-import StartingPage from "./components/StartingPage/StartingPage";
+import StartingPage from "./pages/StartingPage/StartingPage";
 import Impressum from "./components/Impressum/Impressum";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <body>
         <Routes>
           <Route path='/' element={<StartingPage />} />
-          <Route path='/auth' element={<Auth />} />
+          <Route path='/auth' element={<AuthPage />} />
           <Route path='/overview' element={<LandingPage />} />
           <Route path='/creator' element={<Creator />} />
           <Route path='/surveyor/:id' element={<Surveyor />} />

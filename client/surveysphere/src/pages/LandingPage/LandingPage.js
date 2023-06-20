@@ -4,11 +4,11 @@ import results from './media/results.svg';
 import survey from './media/survey.svg';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import AnimatedInput from "../AnimatedInput/AnimatedInput.js";
-import NavBar from "../NavBar/NavBar";
-import CancelButton from "../CancelButton/CancelButton";
+import AnimatedInput from "../../components/AnimatedInput/AnimatedInput.js";
+import NavBar from "../../components/NavBar/NavBar";
+import CancelButton from "../../components/CancelButton/CancelButton";
 import { useDispatch } from 'react-redux';
-import { logout } from "../../pages/Auth/authSlice";
+import { logout } from "../AuthPage/authSlice";
 
 function LandingPage() {
 

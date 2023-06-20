@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './Auth.css';
+import './AuthPage.css';
 import { useDispatch } from 'react-redux';
 import { login } from "./authSlice";
 import { signIn, signUp } from "../../api/index";
 
-const Auth = () => {
+const AuthPage = () => {
 
   const dispatch = useDispatch();
 
@@ -163,4 +163,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthPage;
