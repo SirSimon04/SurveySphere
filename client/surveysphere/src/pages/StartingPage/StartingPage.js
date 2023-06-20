@@ -1,6 +1,6 @@
 import React from 'react';
-import BasicCard from '../BasicCard/BasicCard';
-import SubmitButton from '../SubmitButton/SubmitButton';
+import BasicCard from '../../components/BasicCard/BasicCard';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import { useNavigate } from 'react-router-dom';
 import './StartingPage.css';
 
