@@ -1,13 +1,13 @@
 # SurveySphere
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2c5a5a29-b440-4d68-a7ce-8e3b451bbe30/deploy-status)](https://app.netlify.com/sites/serene-peony-70ab98/deploys)
 ## ToDos
-- [ ] Erklärung
+- [x] Erklärung
 - [ ] schöne Popups überall wo alerts sind
-- [ ] Knopf zum entern bei IDs
-- [ ] Auf Review seite knopf zum kopieren der IDs
-- [ ] NavBar überall
-- [ ] Aufräumen der Ordnerstruktur
-- [ ] An einer Umfrage nur einmal teilnehmen
+- [x] Knopf zum entern bei IDs
+- [x] Auf Review seite knopf zum kopieren der IDs
+- [x] NavBar überall
+- [x] Aufräumen der Ordnerstruktur
+- [x] An einer Umfrage nur einmal teilnehmen
 - [ ] Responsive Design
 - [ ] Dokumentation
-- [ ] Impressum
+- [ ] Impressum noch einbinden - wo?
