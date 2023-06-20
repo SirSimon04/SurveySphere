@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Auth from "./components/Auth/Auth.js";
+import Auth from "./pages/Auth/Auth.js";
 import LandingPage from "./components/LandingPage/LandingPage.js";
 import Creator from "./components/Creator/Creator.js";
 import Surveyor from "./components/Surveyor/Surveyor.js";

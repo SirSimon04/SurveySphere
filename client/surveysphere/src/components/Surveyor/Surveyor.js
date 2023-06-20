@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Surveyor.css'
-import NavBar from '../SurvNavBar/SurvNavBar.js';
+import NavBar from '../NavBar/NavBar';
 import SurveyQuestionCard from './../SurveyQuestionCard/SurveyQuestionCard.js';
 import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import SubmitButton from '../SubmitButton/SubmitButton';
+import CancelButton from '../CancelButton/CancelButton';
 
 function Surveyor() {
 
@@ -97,7 +98,14 @@ function Surveyor() {
 
   return (
     <div className='surveyContainer'>
-      <NavBar title={survey.name}/>
+      <NavBar 
+        showGreeting={true}
+        middle={<h1>{survey.name}</h1>}
+        right={<CancelButton
+            text={'Umfrage verlassen'}
+            handleCancel={() => navigate('/overview')}
+          />}
+      />
       <div className='surveyCardContainer'>
         {survey?.questions.map((question, index) => (
           <SurveyQuestionCard

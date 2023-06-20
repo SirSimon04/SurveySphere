@@ -8,7 +8,7 @@ import AnimatedInput from "../AnimatedInput/AnimatedInput.js";
 import NavBar from "../NavBar/NavBar";
 import CancelButton from "../CancelButton/CancelButton";
 import { useDispatch } from 'react-redux';
-import { logout } from "../Auth/authSlice";
+import { logout } from "../../pages/Auth/authSlice";
 
 function LandingPage() {
 
