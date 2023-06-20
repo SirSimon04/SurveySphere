@@ -88,6 +88,9 @@ function SurveyPage() {
       console.log({e});
       let error;
       switch(e.response.status){
+        case 409:
+          error = "Du hast bereits an dieser Umfrage teilgenommen";
+          break;
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }

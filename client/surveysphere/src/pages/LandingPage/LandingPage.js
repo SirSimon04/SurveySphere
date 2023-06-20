@@ -35,7 +35,7 @@ function LandingPage() {
     }
 
     const handleInputChange = (event) => {
-        setSurveyIDInput(event.taget.value);
+        setSurveyIDInput(event.target.value);
     }
 
     const onNewClick = () => {
