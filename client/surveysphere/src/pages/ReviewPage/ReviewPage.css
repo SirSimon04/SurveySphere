@@ -1,0 +1,48 @@
+.surveyListContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 100px;
+}
+
+.surveyListTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.surveyItem {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+}
+
+.surveyItem p {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.surveyItem button {
+    flex-shrink: 0;
+}
+
+.surveyItem:hover {
+    background-color: #e0e0e0;
+}
+
+.surveyItemLink {
+    text-decoration: none;
+    color: #333;
+}
+
+.copyButton {
+    border: none;
+}
+
+.copyImage {
+    width: 30px;
+    height: auto;
+}
