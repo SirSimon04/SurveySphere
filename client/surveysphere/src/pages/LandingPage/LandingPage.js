@@ -70,6 +70,7 @@ function LandingPage() {
             <SubmitButton 
             text="Los gehts"
             onClick={handleSurveyClick}
+            style={{fontSize: '16px'}}
             />
         </div>
 
