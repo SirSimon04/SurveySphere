@@ -64,7 +64,7 @@ function LandingPage() {
             <AnimatedInput 
             onKeyDown={handleKeyDown} 
             class="inputField" 
-            placeholder="Enter an ID to join survey"
+            placeholder="ID eingeben, um an Umfrage teilzunehmen..."
             onChange={handleInputChange}
             />
             <SubmitButton 
@@ -76,14 +76,14 @@ function LandingPage() {
 
         <div class="cardContainer">
             <div class="card" onClick={onNewClick}>
-                <h2 class="cardTitle">Create</h2>
+                <h2 class="cardTitle">Erstellen</h2>
                 <img src={survey} alt="Survey"/>
-                <p class="cardContent">Create a new survey</p>
+                <p class="cardContent">Erstelle eine survey</p>
             </div>
             <div class="card" onClick={onResultClick}>
-                <h2 class="cardTitle">Results</h2>
+                <h2 class="cardTitle">Ergebnisse</h2>
                 <img src={results} alt="Results"/>
-                <p class="cardContent">Shows results of your survey</p>
+                <p class="cardContent">Ergebnisse deiner surveys</p>
             </div>
         </div>
 
