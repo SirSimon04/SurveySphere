@@ -29,11 +29,15 @@ function SurveyPage() {
 
   const openModal = (heading, text) => {
     setModalText(text);
+    setModalHeading(heading);
     setIsOpen(true);
   }
 
-  const closeModal = () => {
+  const closeModal = (navigationTarget) => {
     setIsOpen(false);
+    if(navigationTarget){
+      navigate(navigationTarget);
+    }
   };
 
   //this function is executed once, when the component is loaded
@@ -97,8 +101,6 @@ function SurveyPage() {
       await voteAll(token, postData);
 
       openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
-
-      navigate('/overview');
     } catch (e){
       console.log({e});
       let error;
@@ -147,17 +149,16 @@ function SurveyPage() {
       <div>
         <Modal
           isOpen={isOpen}
-          onRequestClose={closeModal}
           style={modalStyles}
           contentLabel="Dialog"
         >
-          <h2>Es ist ein Fehler aufgetreten</h2>
+          <h2>{modalHeading}</h2>
           <p>{modalText}</p>
-          <button onClick={closeModal}>Schließen</button>
+          <SubmitButton onClick={() => closeModal('/overview')} text={'Schließen'}/>
         </Modal>
       </div>
     </div>  
   )
 }
 
-export default SurveyPage
+export default SurveyPage;
