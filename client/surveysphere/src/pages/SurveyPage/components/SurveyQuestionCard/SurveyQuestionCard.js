@@ -9,7 +9,7 @@ function SurveyQuestionCard({ question, handleAnswerSelect, index, selectedAnswe
 
   return (
     <BasicCard>
-      <p>{question.question}</p>
+      <p className="questionTitle">{question.question}</p>
       <div className='answerGrid'>
         {question.answerOptions.map((option) => (
           <button
