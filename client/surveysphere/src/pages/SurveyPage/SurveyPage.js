@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import CancelButton from '../../components/CancelButton/CancelButton';
+import Modal from 'react-modal';
+import modalStyles from '../../constants/modalStyles';
 
 function SurveyPage() {
 
@@ -20,6 +22,19 @@ function SurveyPage() {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
 
   const token = useSelector(state => state.auth.jwt);
+
+  const [modalHeading, setModalHeading] = useState('');
+  const [modalText, setModalText] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = (heading, text) => {
+    setModalText(text);
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   //this function is executed once, when the component is loaded
   useEffect(() => {
@@ -66,7 +81,7 @@ function SurveyPage() {
   async function submitSurvey() {
 
      if (!allQuestionsAnswered) {
-      alert('Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
+      openModal('Es ist ein Fehler aufgetreten', 'Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
       return; 
     }
 
@@ -81,7 +96,7 @@ function SurveyPage() {
 
       await voteAll(token, postData);
 
-      alert("Deine Antworten wurden gespeichert");
+      openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
 
       navigate('/overview');
     } catch (e){
@@ -94,7 +109,7 @@ function SurveyPage() {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
-      alert(error);
+      openModal('Es ist ein Fehler aufgetreten', error);
     }
 
   }
@@ -128,6 +143,18 @@ function SurveyPage() {
           <p>Vielen Dank für deine Teilnahme!</p>
           <SubmitButton onClick={() => submitSurvey()} text={'Abschicken'}/>
         </div>
+      </div>
+      <div>
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          style={modalStyles}
+          contentLabel="Dialog"
+        >
+          <h2>Es ist ein Fehler aufgetreten</h2>
+          <p>{modalText}</p>
+          <button onClick={closeModal}>Schließen</button>
+        </Modal>
       </div>
     </div>  
   )
