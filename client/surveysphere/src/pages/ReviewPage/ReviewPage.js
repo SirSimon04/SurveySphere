@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './ReviewPage.css';
 import NavBar from '../../components/NavBar/NavBar';
 import LogoButton from '../../components/LogoButton/LogoButton';
-import copyImg from './media/copy.png';
+import copyImg from './media/shareIcon.png';
 
 const ReviewPage = () => {
   const navigate = useNavigate();

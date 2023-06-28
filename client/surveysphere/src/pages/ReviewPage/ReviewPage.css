@@ -46,6 +46,7 @@
 
 .copyButton {
     border: none;
+    background-color: transparent;
 }
 
 .copyImage {
