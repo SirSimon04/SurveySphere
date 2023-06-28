@@ -142,7 +142,7 @@ function CreatePage() {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
-      openModal('Es ist ein Fehler aufgetreten');
+      openModal('Es ist ein Fehler aufgetreten', error);
     }
 
   }
