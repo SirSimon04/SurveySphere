@@ -1,5 +1,6 @@
 import React from 'react';
 import './SurveyQuestionCard.css';
+import BasicCard from '../../../../components/BasicCard/BasicCard';
 
 function SurveyQuestionCard({ question, handleAnswerSelect, index, selectedAnswers }) {
   const isAnswerSelected = (answerId) => {
@@ -7,7 +8,7 @@ function SurveyQuestionCard({ question, handleAnswerSelect, index, selectedAnswe
   };
 
   return (
-    <div className='basicCard'>
+    <BasicCard>
       <p>{question.question}</p>
       <div className='answerGrid'>
         {question.answerOptions.map((option) => (
@@ -20,7 +21,7 @@ function SurveyQuestionCard({ question, handleAnswerSelect, index, selectedAnswe
           </button>
         ))}
       </div>
-    </div>
+    </BasicCard>
   );
 }
 

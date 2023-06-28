@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CreatePage.css';
-import CreateQuestionCard from '../../components/CreateQuestionCard/CreateQuestionCard';
+import CreateQuestionCard from './components/CreateQuestionCard/CreateQuestionCard';
 import { createSurvey } from '../../api/index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
