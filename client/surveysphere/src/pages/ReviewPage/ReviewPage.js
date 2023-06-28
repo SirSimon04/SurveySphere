@@ -48,18 +48,20 @@ const ReviewPage = () => {
           right={<LogoButton />}
         />
       <div className="surveyListContainer">
-        {surveys.map((survey) => (
-          <div
-            key={survey.id}
-            className="surveyItem"
-            onClick={() => handleSurveyClick(survey)}
-          >
-            <p>{survey.name}</p>
-            <button className='copyButton' onClick={(event) => { event.stopPropagation(); copySurveyId(survey._id)}}>
-              <img className='copyImage' src={copyImg} alt="" />
-            </button>
-          </div>
-        ))}
+        <div className="surveyResultContainer">
+          {surveys.map((survey) => (
+            <div
+              key={survey.id}
+              className="surveyItem"
+              onClick={() => handleSurveyClick(survey)}
+            >
+              <p>{survey.name}</p>
+              <button className='copyButton' onClick={(event) => { event.stopPropagation(); copySurveyId(survey._id)}}>
+                <img className='copyImage' src={copyImg} alt="" />
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
