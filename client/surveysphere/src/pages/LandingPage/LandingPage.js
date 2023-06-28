@@ -54,16 +54,16 @@ function LandingPage() {
     return (
     <>
     <NavBar 
-        middle={<h1 class="title">Hallo, {userName}</h1>}
+        middle={<h1 classNameName="title">Hallo, {userName}</h1>}
         right={<CancelButton text={'Ausloggen'} handleCancel={handleLogout} />}
     />
-    <div class="page">
+    <div className="page">
 
-        <div class="inputContainer">
-            {/* <input class="inputField" type="text" placeholder="Enter ID to join survey"></input>     */}
+        <div className="inputContainer">
+            {/* <input className="inputField" type="text" placeholder="Enter ID to join survey"></input>     */}
             <AnimatedInput 
             onKeyDown={handleKeyDown} 
-            class="inputField" 
+            className="inputField" 
             placeholder="Enter an ID to join survey"
             onChange={handleInputChange}
             />
@@ -74,16 +74,16 @@ function LandingPage() {
             />
         </div>
 
-        <div class="cardContainer">
-            <div class="card" onClick={onNewClick}>
-                <h2 class="cardTitle">Create</h2>
+        <div className="cardContainer">
+            <div className="card" onClick={onNewClick}>
+                <h2 className="cardTitle">Create</h2>
                 <img src={survey} alt="Survey"/>
-                <p class="cardContent">Create a new survey</p>
+                <p className="cardContent">Create a new survey</p>
             </div>
-            <div class="card" onClick={onResultClick}>
-                <h2 class="cardTitle">Results</h2>
+            <div className="card" onClick={onResultClick}>
+                <h2 className="cardTitle">Results</h2>
                 <img src={results} alt="Results"/>
-                <p class="cardContent">Shows results of your survey</p>
+                <p className="cardContent">Shows results of your survey</p>
             </div>
         </div>
 
