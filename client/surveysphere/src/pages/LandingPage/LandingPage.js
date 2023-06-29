@@ -58,9 +58,7 @@ function LandingPage() {
         right={<CancelButton text={'Ausloggen'} handleCancel={handleLogout} />}
     />
     <div className="page">
-
         <div className="inputContainer">
-            {/* <input className="inputField" type="text" placeholder="Enter ID to join survey"></input>     */}
             <AnimatedInput 
             onKeyDown={handleKeyDown} 
             placeholder="ID eingeben, um an Umfrage teilzunehmen..."

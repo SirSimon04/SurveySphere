@@ -1,78 +1,110 @@
+.title {
+  font-family: "Arial", sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.inputField {
+  flex-grow: 1;
+  min-width: 350px;
+  width: 100%;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: medium;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.inputField:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+}
+
+.card {
+  width: 100%;
+  max-width: 450px;
+  margin: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardTitle {
+  font-size: larger;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cardContent {
+  font-size: small;
+  color: #666;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  padding-top: 8%;
+}
+
+@media (max-width: 768px) {
   .title {
-    font-family: "Arial", sans-serif;
-    font-size: xx-large;
-    font-weight: bold;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: large;
+  }
+
+  .inputContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
   }
 
   .inputField {
-    width: 350px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: medium;
-    color: #333;
-    outline: none;
-  }
-
-  .inputField:focus {
-    border-color: #0066cc;
-    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
-  }
-
-
-  .inputContainer {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .card {
-    width: 450px;
-    margin-right: 20px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-  }
-
-  .cardTitle {
-    font-size: larger;
-    font-weight: bold;
+    max-width: 90%;
+    margin: 0;
     margin-bottom: 10px;
   }
 
-  .cardContent {
-    font-size: small;
-    color: #666;
+  .card {
+    max-width: 100%;
+    margin: 10px;
   }
-
-  .cardContainer {
-    display: flex;
-  }
-
-  .page {
-    align-items: center;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 20px;
-    padding-top: 8%;
-  }
+}
