@@ -18,6 +18,7 @@ function CreatePage() {
   const [modalText, setModalText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [shouldNavigate, setShouldNavigate] = useState(false);
+  const [createdSurveyID, setCreatedSurveyID] = useState();
 
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ function CreatePage() {
     const closeModal = (navigationTarget) => {
       setIsOpen(false);
       if(navigationTarget && shouldNavigate){
+        navigator.clipboard.writeText(createdSurveyID);
         navigate(navigationTarget);
       }
     };
@@ -140,6 +142,8 @@ function CreatePage() {
 
       const id = res.data._id;
 
+      setCreatedSurveyID(id);
+
       setShouldNavigate(true);
       openModal('Erfolgreich erstellt', `Deine Umfrage wurde erfolgreich hochgeladen. Die ID ist ${id}`)
 
@@ -201,7 +205,8 @@ function CreatePage() {
         >
           <h2>{modalHeading}</h2>
           <p>{modalText}</p>
-          <SubmitButton onClick={() => closeModal('/overview')} text={'Schließen'}/>
+          <SubmitButton onClick={() => closeModal('/overview')} text={shouldNavigate ? 'ID kopieren' : 'Schließen'}/>
+          
         </Modal>
       </div>
     </div>
