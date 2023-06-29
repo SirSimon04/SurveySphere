@@ -17,10 +17,6 @@ const auth = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error)
-    if(error.name === "JsonWebTokenError"){
-      req.userId = "647e3072922534f1c6cc593f"; //userID of simi
-      next();
-    }
   }
 };
 
