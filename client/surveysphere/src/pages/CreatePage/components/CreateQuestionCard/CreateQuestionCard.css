@@ -25,6 +25,7 @@
 }
 
 .addOptionButton {
+  z-index: 0;
   padding: 10px 20px;
   background-color: #6a63f6;
   color: #fff;
