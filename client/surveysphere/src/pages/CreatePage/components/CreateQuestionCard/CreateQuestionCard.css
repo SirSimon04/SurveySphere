@@ -18,7 +18,7 @@
 
 .answerGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust the minimum and maximum width as per your requirement */
   gap: 10px;
   align-items: center;
   width: 100%;
@@ -47,4 +47,18 @@
 .questionTypeLabel {
   margin-right: 10px;
   font-size: medium;
+}
+
+@media (max-width: 768px) {
+  .answerGrid {
+    grid-template-columns: 1fr; /* Display a single column on smaller devices */
+  }
+
+  .addOptionButton {
+    margin-bottom: 20px;
+  }
+
+  .questionType {
+    margin-bottom: 20px;
+  }
 }
