@@ -7,7 +7,6 @@ export const loadingSlice = createSlice({
   },
   reducers: {
     setLoading: (state, action) => {
-        console.log("dispatched")
         state.isLoading = action.payload.status
     }
   },
