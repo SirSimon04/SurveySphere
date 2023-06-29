@@ -20,3 +20,7 @@
     }
   }
   
+
+  #backButtonDiv * img {
+    display: none;
+  }
