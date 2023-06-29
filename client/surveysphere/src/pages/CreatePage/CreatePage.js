@@ -87,7 +87,6 @@ function CreatePage() {
 
 
   const convertToServerData = () => {
-    console.log()
     const serverData = {
       name: title,
       isMultiSelect: false,
@@ -99,7 +98,6 @@ function CreatePage() {
         }))
       }))
     };
-    console.log(serverData);
     return serverData;
   };
 
@@ -128,15 +126,12 @@ function CreatePage() {
 
       const res = await createSurvey(token, data);
 
-      console.log(res);
-
       const id = res.data._id;
 
       setShouldNavigate(true);
       openModal('Erfolgreich erstellt', `Deine Umfrage wurde erfolgreich hochgeladen. Die ID ist ${id}`)
 
     } catch (e) {
-      console.log({e});
       let error;
       switch(e.response.status){
         default:

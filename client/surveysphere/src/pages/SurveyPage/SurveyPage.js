@@ -88,8 +88,6 @@ function SurveyPage() {
       return; 
     }
 
-    console.log(selectedAnswers);
-
     const postData = {
       id,
       selectedAnswers
@@ -101,7 +99,6 @@ function SurveyPage() {
 
       openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
     } catch (e){
-      console.log({e});
       let error;
       switch(e.response.status){
         case 409:

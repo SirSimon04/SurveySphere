@@ -82,7 +82,6 @@ const AuthPage = () => {
       navigate("/overview");
 
     } catch(e) {
-      console.log({e});
       let error;
       switch(e.response.status){
         case 401: 
@@ -126,7 +125,6 @@ const AuthPage = () => {
       navigate("/overview");
 
     } catch (e) {
-      console.log({e});
       let error;
       switch(e.response.status){
         case 409:

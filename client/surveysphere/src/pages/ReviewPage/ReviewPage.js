@@ -22,20 +22,14 @@ const ReviewPage = () => {
       const dbSurveys = await getOwnSurveys(token);
       setSurveys(dbSurveys.data);
     } catch (error) {
-      console.log(error);
     }
   }
-
-  useEffect(() => {
-    console.log(surveys);
-  }, [surveys]);
 
   const handleSurveyClick = (survey) => {
     navigate(`/result`, { state: { survey } });
   };
 
   const copySurveyId = (surveyId) => {
-    console.log(surveyId)
     navigator.clipboard.writeText(surveyId);
   };
 

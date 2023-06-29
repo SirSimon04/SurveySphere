@@ -28,7 +28,6 @@ export const getOwn = async (req, res) => {
         res.json(surveys);
 
     } catch (error){
-        console.log(error);
         res.status(500).json({ message: "Es ist ein Fehler aufgetreten" });
     }
 }
@@ -47,7 +46,6 @@ export const create = async (req, res) => {
         res.status(201).json(newSurvey);
 
     } catch (error) {
-        console.log(error);
         res.json({ message: "Something went wrong" });
   }
 }
@@ -90,7 +88,6 @@ export const voteAll = async (req, res) => {
 
     res.status(200).json({ message: 'Alle Antworten wurden erfolgreich gespeichert' });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: 'Es ist ein Fehler aufgetreten' });
   }
 };
@@ -148,7 +145,6 @@ export const vote = async (req, res) => {
 
         res.json(survey);
     } catch (error) {
-        console.log(error)
         res.status(500).json({ message: "Something went wrong" });
     }
 }
