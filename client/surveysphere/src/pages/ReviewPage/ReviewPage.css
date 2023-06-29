@@ -24,11 +24,12 @@
     border-radius: 3px;
     cursor: pointer;
     display: flex;
+    align-items: center;
 }
 
 .surveyItem p {
     flex-grow: 1;
-    margin-right: 10px;
+    margin: 20px 10px;
 }
 
 .surveyItem button {
@@ -38,6 +39,10 @@
 .surveyItem:hover {
     background-color: #e0e0e0;
 }
+.surveyItem:has( .copyButton:focus) .message{
+    opacity: 0.5;
+    color: transparent;
+}
 
 .surveyItemLink {
     text-decoration: none;
@@ -45,11 +50,25 @@
 }
 
 .copyButton {
+    margin: 10px;
     border: none;
-    background-color: transparent;
+    background-color: #6a63f6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+.message{
+    opacity: 0;
+    transition: opacity .5s ease-in, color .3s ease-out 2s;
+}
+.copyButton:active {
+    background-color: red;
 }
 
 .copyImage {
-    width: 30px;
+    width: 20px;
     height: auto;
 }
