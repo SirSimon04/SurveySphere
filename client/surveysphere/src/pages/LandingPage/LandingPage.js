@@ -26,10 +26,7 @@ function LandingPage() {
     };
 
     const handleSurveyClick = () => {
-        if(surveyIDInput === ""){
-            navigate(`/surveyor/647f1a85cbcc63bc04f45200`);
-        }
-        else{
+        if(surveyIDInput !== ""){
             navigate(`/surveyor/${surveyIDInput}`);
         }
     }
