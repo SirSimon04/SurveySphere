@@ -4,6 +4,7 @@ import './AuthPage.css';
 import { useDispatch } from 'react-redux';
 import { login } from "./authSlice";
 import { signIn, signUp } from "../../api/index";
+import { setLoading } from '../../app/loadingSlice';
 import Modal from 'react-modal';
 import modalStyles from '../../constants/modalStyles';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
@@ -67,7 +68,15 @@ const AuthPage = () => {
 
     try{
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       const res = await signIn(formData);  
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       const token = res.data.token;
       const id = res.data.result._id;
