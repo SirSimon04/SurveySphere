@@ -29,6 +29,7 @@ function SurveyPage() {
   const [modalHeading, setModalHeading] = useState('');
   const [modalText, setModalText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const openModal = (heading, text) => {
     setModalText(text);
@@ -38,7 +39,7 @@ function SurveyPage() {
 
   const closeModal = (navigationTarget) => {
     setIsOpen(false);
-    if(navigationTarget){
+    if(navigationTarget && shouldNavigate){
       navigate(navigationTarget);
     }
   };
@@ -117,6 +118,8 @@ function SurveyPage() {
       dispatch(setLoading({
         status: false
       }));
+
+      setShouldNavigate(true);
 
       openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
     } catch (e){
