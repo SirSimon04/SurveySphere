@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './ReviewPage.css';
 import NavBar from '../../components/NavBar/NavBar';
 import LogoButton from '../../components/LogoButton/LogoButton';
-import copyImg from './media/shareIcon.png';
+import copyImg from './media/shareIconWhite.png';
 
 const ReviewPage = () => {
   const navigate = useNavigate();
@@ -53,8 +53,9 @@ const ReviewPage = () => {
               key={survey.id}
               className="surveyItem"
               onClick={() => handleSurveyClick(survey)}
-            >
+              >
               <p>{survey.name}</p>
+              <p className ='message'>Link in Zwischenablage kopiert</p>
               <button className='copyButton' onClick={(event) => { event.stopPropagation(); copySurveyId(survey._id)}}>
                 <img className='copyImage' src={copyImg} alt="" />
               </button>

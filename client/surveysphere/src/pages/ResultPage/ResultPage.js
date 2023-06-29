@@ -3,6 +3,7 @@ import './ResultPage.css';
 import ResultCard from './components/ResultCard/ResultCard';
 import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
+import CancelButton from '../../components/CancelButton/CancelButton'
 
 function ResultPage() {
   const location = useLocation();
@@ -20,7 +21,7 @@ function ResultPage() {
     <>
       <NavBar 
         middle={<h1>{survey.name}</h1>}
-        right={<button onClick={handleBackClick}>Zurück</button>}
+        right={<CancelButton handleCancel={handleBackClick} text="Zurück"/>}
       />
       <div className="resultContainer">
         {survey && survey.questions.map((question) => (
