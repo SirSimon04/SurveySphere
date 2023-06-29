@@ -40,14 +40,11 @@ function SurveyPage() {
     }
   };
 
-  //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
     // eslint-disable-next-line
   }, []);
 
-  //647e34d70ea1ab66af49e073
-  //id of a survey with some more data
     async function loadSurvey() {
       try{
         const dbSurvey = await getSurvey(id);
@@ -69,10 +66,8 @@ function SurveyPage() {
     }
     else {
       if (newSelectedAnswers[questionIndex].includes(answerId)) {
-        //if answer is selected, remove it
         newSelectedAnswers[questionIndex] = newSelectedAnswers[questionIndex].filter((id) => id !== answerId);
       } else {
-        //if answer is not selected add it to the previous selected ones
         newSelectedAnswers[questionIndex] = [...newSelectedAnswers[questionIndex], answerId];
       }
     }
@@ -140,11 +135,6 @@ function SurveyPage() {
             key={question._id}
           />
         ))}
-        {/* <SurveyQuestionCard />
-        <SurveyQuestionCard />
-        <SurveyQuestionCard />
-        <SurveyQuestionCard />
-        <SurveyQuestionCard /> */}
         {survey.questions.length > 0 && 
         <div className='endSequenz'>
           <p>Vielen Dank für deine Teilnahme!</p>

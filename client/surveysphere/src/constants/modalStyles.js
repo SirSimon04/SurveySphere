@@ -16,7 +16,7 @@ const modalStyles =  {
     },
     overlay: {
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1000, // Hinzufügen eines höheren zIndex-Werts
+      zIndex: 1000,
     },
   };
 

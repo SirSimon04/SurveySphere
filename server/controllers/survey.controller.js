@@ -36,8 +36,6 @@ export const getOwn = async (req, res) => {
 export const create = async (req, res) => {
     const survey = req.body;
 
-    //TODO: destructuring of body, check if values are all given
-
     const newSurvey = new SurveyModel(survey);
 
     try{

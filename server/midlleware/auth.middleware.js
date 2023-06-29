@@ -8,7 +8,6 @@ const auth = async (req, res, next) => {
     }
 
     const token = req.headers.authorization.split(" ")[1]; //Format is "Bearer token"
-    // const token = req.header.authorization;
 
     const decodedData = jwt.verify(token, "Test");
 
