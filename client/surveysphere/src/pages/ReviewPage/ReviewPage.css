@@ -61,11 +61,12 @@
     height: 40px;
 }
 .message{
+    text-align: right;
     opacity: 0;
     transition: opacity .5s ease-in, color .3s ease-out 2s;
 }
 .copyButton:active {
-    background-color: red;
+    background-color: #4238ff;
 }
 
 .copyImage {
