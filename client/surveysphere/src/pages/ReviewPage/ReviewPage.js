@@ -37,7 +37,6 @@ const ReviewPage = () => {
   const copySurveyId = (surveyId) => {
     console.log(surveyId)
     navigator.clipboard.writeText(surveyId);
-    // alert('ID wurde kopiert!');
   };
 
   return (
