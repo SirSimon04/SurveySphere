@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import CancelButton from '../../components/CancelButton/CancelButton';
+import Modal from 'react-modal';
+import modalStyles from '../../constants/modalStyles';
 
 function SurveyPage() {
 
@@ -21,6 +23,23 @@ function SurveyPage() {
 
   const token = useSelector(state => state.auth.jwt);
 
+  const [modalHeading, setModalHeading] = useState('');
+  const [modalText, setModalText] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = (heading, text) => {
+    setModalText(text);
+    setModalHeading(heading);
+    setIsOpen(true);
+  }
+
+  const closeModal = (navigationTarget) => {
+    setIsOpen(false);
+    if(navigationTarget){
+      navigate(navigationTarget);
+    }
+  };
+
   //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
@@ -30,9 +49,13 @@ function SurveyPage() {
   //647e34d70ea1ab66af49e073
   //id of a survey with some more data
     async function loadSurvey() {
-    const dbSurvey = await getSurvey(id);
-    setSurvey(dbSurvey.data);
-    setSelectedAnswers(new Array(dbSurvey.data.questions.length).fill([]));
+      try{
+        const dbSurvey = await getSurvey(id);
+        setSurvey(dbSurvey.data);
+        setSelectedAnswers(new Array(dbSurvey.data.questions.length).fill([]));
+      } catch (e){
+        openModal('Es ist ein Fehler aufgetreten', 'Die Umfrage mit der eingegebenen ID wurde nicht gefunden')
+      }
   }
 
   const handleAnswerSelect = (questionIndex, answerId) => {
@@ -66,7 +89,7 @@ function SurveyPage() {
   async function submitSurvey() {
 
      if (!allQuestionsAnswered) {
-      alert('Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
+      openModal('Es ist ein Fehler aufgetreten', 'Bitte beantworte alle Fragen, bevor du das Formular abschickst.');
       return; 
     }
 
@@ -81,9 +104,7 @@ function SurveyPage() {
 
       await voteAll(token, postData);
 
-      alert("Deine Antworten wurden gespeichert");
-
-      navigate('/overview');
+      openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
     } catch (e){
       console.log({e});
       let error;
@@ -94,7 +115,7 @@ function SurveyPage() {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
-      alert(error);
+      openModal('Es ist ein Fehler aufgetreten', error);
     }
 
   }
@@ -124,13 +145,25 @@ function SurveyPage() {
         <SurveyQuestionCard />
         <SurveyQuestionCard />
         <SurveyQuestionCard /> */}
+        {survey.questions.length > 0 && 
         <div className='endSequenz'>
           <p>Vielen Dank für deine Teilnahme!</p>
           <SubmitButton onClick={() => submitSurvey()} text={'Abschicken'}/>
-        </div>
+        </div>}
+      </div>
+      <div>
+        <Modal
+          isOpen={isOpen}
+          style={modalStyles}
+          contentLabel="Dialog"
+        >
+          <h2>{modalHeading}</h2>
+          <p>{modalText}</p>
+          <SubmitButton onClick={() => closeModal('/overview')} text={'Schließen'}/>
+        </Modal>
       </div>
     </div>  
   )
 }
 
-export default SurveyPage
+export default SurveyPage;

@@ -9,8 +9,10 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import StartingPage from "./pages/StartingPage/StartingPage";
 import ImpressumPage from "./pages/ImpressumPage/ImpressumPage";
+import Modal from 'react-modal';
 
 function App() {
+  Modal.setAppElement('#root');
   return (
     <BrowserRouter>
       <body>
