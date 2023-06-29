@@ -1,6 +1,6 @@
 .creatorContainer {
-  margin-top: 100px;
-  margin-bottom: 200px;
+  margin-top: 120px;
+  margin-bottom: 100px;
 }
 
 .createCardContainer {
@@ -22,7 +22,7 @@
 }
 
 .addCardButton {
-  font-size: 24px;
+  font-size: x-large;
   font-weight: bold;
   background-color: white;
   color: #6a63f6;
@@ -42,8 +42,8 @@
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 24px;
+  border-radius: 3px;
+  font-size: x-large;
   font-weight: bold;
   color: #333;
   background-color: #fff;

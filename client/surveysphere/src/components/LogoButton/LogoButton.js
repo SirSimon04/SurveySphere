@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import logoImage from '../../surveysphere_bg2.png'
+import logoImage from '../../surveysphere_bg3.png'
 import './LogoButton.css';
 
 function LogoButton() {
