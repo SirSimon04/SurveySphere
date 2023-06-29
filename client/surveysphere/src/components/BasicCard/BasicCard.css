@@ -8,11 +8,19 @@
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-}
-.basicCard>p:hover {
+  }
+  
+  .basicCard>p:hover {
     cursor: default;
-}
-
-.questionTitle {
+  }
+  
+  .questionTitle {
     font-weight: bold;
-}
+  }
+  
+  @media (max-width: 768px) {
+    .basicCard {
+      width: 100%;
+    }
+  }
+  

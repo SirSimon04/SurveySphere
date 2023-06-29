@@ -23,7 +23,7 @@
   
   @media (max-width: 768px) {
     .navBar {
-      padding: 10px;
+      padding: 2px 10px;
       min-height: auto;
       flex-wrap: wrap;
       justify-content: center;
@@ -46,7 +46,11 @@
       width: 100%;
       max-width: 300px;
       padding: 8px;
-      font-size: 14px;
+      font-size: x-large;
+    }
+
+    .middle h1 {
+      font-size: x-large;
     }
   
     .greeting {
