@@ -1,0 +1,8 @@
+.cancelButton {
+    padding: 10px;
+    background-color: rgb(235, 81, 96);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

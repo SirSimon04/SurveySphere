@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 
-//single-/multi-select
-//freitext
-//slider
 const surveySchema = mongoose.Schema({
     name: { type: String, required: true },
     creator : { type: String, required: true},

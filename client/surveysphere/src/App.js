@@ -1,24 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Auth from "./components/Auth/Auth.js";
-import LandingPage from "./components/LandingPage/LandingPage.js";
-import Creator from "./components/Creator/Creator.js";
-import Surveyor from "./components/Surveyor/Surveyor.js";
-import Reviewer from "./components/Reviewer/Reviewer.js";
-import Result from "./components/Result/Result";
+import AuthPage from "./pages/AuthPage/AuthPage.js";
+import LandingPage from "./pages/LandingPage/LandingPage.js";
+import CreatePage from "./pages/CreatePage/CreatePage.js";
+import SurveyPage from "./pages/SurveyPage/SurveyPage.js";
+import ReviewPage from "./pages/ReviewPage/ReviewPage.js";
+import ResultPage from "./pages/ResultPage/ResultPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import StartingPage from "./pages/StartingPage/StartingPage";
+import ImpressumPage from "./pages/ImpressumPage/ImpressumPage";
+import Modal from 'react-modal';
+import ImpressumButton from './components/ImpressumButton/ImpressumButton'
 
 function App() {
+  Modal.setAppElement('#root');
   return (
     <BrowserRouter>
       <body>
         <Routes>
-          <Route path='/' element={<Auth />} />
+          <Route path='/' element={<StartingPage />} />
+          <Route path='/auth' element={<AuthPage />} />
           <Route path='/overview' element={<LandingPage />} />
-          <Route path='/creator' element={<Creator />} />
-          <Route path='/surveyor/:id' element={<Surveyor />} />
-          <Route path='/reviewer' element={<Reviewer />} />
-          <Route path='/result' element={<Result />} />
+          <Route path='/creator' element={<CreatePage />} />
+          <Route path='/surveyor/:id' element={<SurveyPage />} />
+          <Route path='/reviewer' element={<ReviewPage />} />
+          <Route path='/result' element={<ResultPage />} />
+          <Route path='/impressum' element={<ImpressumPage />}/>
+          <Route path='*' element={<NotFoundPage />}/>
         </Routes>
+        <ImpressumButton/>
       </body>
     </BrowserRouter>
   );

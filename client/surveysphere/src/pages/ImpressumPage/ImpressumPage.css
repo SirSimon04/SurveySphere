@@ -1,0 +1,9 @@
+.impressum-container {
+    padding: 5%;
+}
+
+#backButtonDiv {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+} 

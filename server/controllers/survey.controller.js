@@ -36,8 +36,6 @@ export const getOwn = async (req, res) => {
 export const create = async (req, res) => {
     const survey = req.body;
 
-    //TODO: destructuring of body, check if values are all given
-
     const newSurvey = new SurveyModel(survey);
 
     try{
@@ -59,25 +57,35 @@ export const voteAll = async (req, res) => {
     const { id: surveyId, selectedAnswers: answers} = req.body;
     const userID = req.userId;
 
-    // Überprüfen, ob die Umfrage existiert
     const survey = await SurveyModel.findById(surveyId);
     if (!survey) {
       return res.status(404).json({ message: 'Umfrage nicht gefunden' });
     }
 
-  answers.forEach((answerIds, questionIndex) => {
-      const question = survey.questions[questionIndex];
-      answerIds.forEach((answerId) => {
-        const answerOption = question.answerOptions.find(
-          (option) => option._id.toString() === answerId
-        );
-        if (answerOption) {
-          answerOption.answers.push({ userID });
-        }
-      });
+    const existingAnswer = survey.questions.some((question, _) => 
+        question.answerOptions.some((answerOption) => 
+            answerOption.answers.some((answer) => 
+                answer.userID === userID
+        )
+      )
+    );
+
+    if (existingAnswer) {
+      return res.status(409).json({ message: 'Du hast bereits an dieser Umfrage teilgenommen' });
+    }
+
+    answers.forEach((answerIds, questionIndex) => {
+        const question = survey.questions[questionIndex];
+        answerIds.forEach((answerId) => {
+            const answerOption = question.answerOptions.find(
+            (option) => option._id.toString() === answerId
+            );
+            if (answerOption) {
+            answerOption.answers.push({ userID });
+            }
+        });
     });
 
-    // Speichern Sie die geänderte Umfrage
     await survey.save();
 
     res.status(200).json({ message: 'Alle Antworten wurden erfolgreich gespeichert' });

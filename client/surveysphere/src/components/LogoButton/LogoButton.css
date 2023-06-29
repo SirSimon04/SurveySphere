@@ -1,0 +1,11 @@
+.imageButtonImage {
+    height: 28px;
+    width: auto;
+    background-color: #6a63f6;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.logoButton {
+    border: none;
+}
