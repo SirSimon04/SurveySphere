@@ -9,8 +9,6 @@ function ResultPage() {
   const location = useLocation();
   const survey = location.state?.survey;
 
-  console.log({survey})
-
   const navigate = useNavigate();
 
   const handleBackClick = () => {

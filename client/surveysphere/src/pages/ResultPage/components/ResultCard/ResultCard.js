@@ -24,7 +24,7 @@ function ResultCard({question}) {
 
   function buildChartData(question) {
     
-    const labels = question.answerOptions.map((option, index) => '' + (index + 1).toString() + ".");
+    const labels = question.answerOptions.map((_, index) => '' + (index + 1).toString() + ".");
     const data = question.answerOptions.map((option) => option.answers.length);
 
     const chartData = {
@@ -48,7 +48,7 @@ function ResultCard({question}) {
     const chartOptions = {
         plugins: {
           legend: {
-            display: false, // Legende ausblenden
+            display: false,
           },
         },
         scales: {

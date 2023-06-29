@@ -6,6 +6,8 @@ import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { setLoading } from '../../app/loadingSlice';
+import { useDispatch } from 'react-redux';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import CancelButton from '../../components/CancelButton/CancelButton';
 import Modal from 'react-modal';
@@ -14,6 +16,7 @@ import modalStyles from '../../constants/modalStyles';
 function SurveyPage() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { id } = useParams();
 
@@ -40,17 +43,24 @@ function SurveyPage() {
     }
   };
 
-  //this function is executed once, when the component is loaded
   useEffect(() => {
     loadSurvey();
     // eslint-disable-next-line
   }, []);
 
-  //647e34d70ea1ab66af49e073
-  //id of a survey with some more data
     async function loadSurvey() {
       try{
+
+        dispatch(setLoading({
+          status: true
+        }));
+
         const dbSurvey = await getSurvey(id);
+
+        dispatch(setLoading({
+          status: false
+        }));
+
         setSurvey(dbSurvey.data);
         setSelectedAnswers(new Array(dbSurvey.data.questions.length).fill([]));
       } catch (e){
@@ -69,10 +79,8 @@ function SurveyPage() {
     }
     else {
       if (newSelectedAnswers[questionIndex].includes(answerId)) {
-        //if answer is selected, remove it
         newSelectedAnswers[questionIndex] = newSelectedAnswers[questionIndex].filter((id) => id !== answerId);
       } else {
-        //if answer is not selected add it to the previous selected ones
         newSelectedAnswers[questionIndex] = [...newSelectedAnswers[questionIndex], answerId];
       }
     }
@@ -93,8 +101,6 @@ function SurveyPage() {
       return; 
     }
 
-    console.log(selectedAnswers);
-
     const postData = {
       id,
       selectedAnswers
@@ -102,11 +108,18 @@ function SurveyPage() {
 
     try {
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       await voteAll(token, postData);
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
     } catch (e){
-      console.log({e});
       let error;
       switch(e.response.status){
         case 409:
@@ -140,11 +153,6 @@ function SurveyPage() {
             key={question._id}
           />
         ))}
-        {/* <SurveyQuestionCard />
-        <SurveyQuestionCard />
-        <SurveyQuestionCard />
-        <SurveyQuestionCard />
-        <SurveyQuestionCard /> */}
         {survey.questions.length > 0 && 
         <div className='endSequenz'>
           <p>Vielen Dank für deine Teilnahme!</p>
