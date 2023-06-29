@@ -16,6 +16,10 @@
   .right {
     text-align: right;
   }
+
+  .right * #cancelImage{
+    display: none;
+  }
   
   .greeting {
     font-size: large;
@@ -35,6 +39,15 @@
   
     .right {
       text-align: center;
+    }
+
+    .right * div{
+      display: none;
+    }
+
+    .right * #cancelImage {
+      width: 15px;
+      display: inline;
     }
   
     .middle {
