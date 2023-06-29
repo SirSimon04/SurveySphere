@@ -11,12 +11,39 @@
     box-shadow: 0 2px 20px 5px rgba(0, 0, 0, 0.2);
     z-index: 999;
     min-height: 50px;
-}
-
-.right {
+  }
+  
+  .right {
     text-align: right;
-}
-
-.greeting {
+  }
+  
+  .greeting {
     font-size: large;
-}
+  }
+  
+  @media (max-width: 768px) {
+    .navBar {
+      padding: 10px;
+      min-height: auto;
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+    
+    .left {
+        display: none;
+    } 
+
+    .right {
+        text-align: center;
+    }
+
+    .middle {
+      flex: 1;
+      text-align: left;
+    }
+  
+    .greeting {
+      font-size: small;
+    }
+  }
+  
