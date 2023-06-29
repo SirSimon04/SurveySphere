@@ -6,6 +6,8 @@ import { getSurvey, voteAll } from '../../api';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { setLoading } from '../../app/loadingSlice';
+import { useDispatch } from 'react-redux';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import CancelButton from '../../components/CancelButton/CancelButton';
 import Modal from 'react-modal';
@@ -14,6 +16,7 @@ import modalStyles from '../../constants/modalStyles';
 function SurveyPage() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { id } = useParams();
 
@@ -47,7 +50,17 @@ function SurveyPage() {
 
     async function loadSurvey() {
       try{
+
+        dispatch(setLoading({
+          status: true
+        }));
+
         const dbSurvey = await getSurvey(id);
+
+        dispatch(setLoading({
+          status: false
+        }));
+
         setSurvey(dbSurvey.data);
         setSelectedAnswers(new Array(dbSurvey.data.questions.length).fill([]));
       } catch (e){
@@ -95,7 +108,15 @@ function SurveyPage() {
 
     try {
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       await voteAll(token, postData);
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       openModal('Antworten hochgeladen', 'Deine Antworten wurden erfolgreich gespeichert.')
     } catch (e){

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getOwnSurveys } from '../../api/index';
 import { useSelector } from 'react-redux';
+import { setLoading } from '../../app/loadingSlice';
+import { useDispatch } from 'react-redux';
 import './ReviewPage.css';
 import NavBar from '../../components/NavBar/NavBar';
 import LogoButton from '../../components/LogoButton/LogoButton';
@@ -12,6 +14,8 @@ const ReviewPage = () => {
   const token = useSelector((state) => state.auth.jwt);
   const [surveys, setSurveys] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     loadSurvey();
     // eslint-disable-next-line
@@ -19,7 +23,17 @@ const ReviewPage = () => {
 
   async function loadSurvey() {
     try {
+
+      dispatch(setLoading({
+        status: true
+      }));
+
       const dbSurveys = await getOwnSurveys(token);
+
+      dispatch(setLoading({
+        status: false
+      }));
+
       setSurveys(dbSurveys.data);
     } catch (error) {
     }

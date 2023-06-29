@@ -9,6 +9,8 @@ import NavBar from '../../components/NavBar/NavBar';
 import CancelButton from '../../components/CancelButton/CancelButton';
 import Modal from 'react-modal';
 import modalStyles from '../../constants/modalStyles';
+import { setLoading } from '../../app/loadingSlice';
+import { useDispatch } from 'react-redux';
 
 function CreatePage() {
 
@@ -16,6 +18,8 @@ function CreatePage() {
   const [modalText, setModalText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [shouldNavigate, setShouldNavigate] = useState(false);
+
+  const dispatch = useDispatch();
 
   const openModal = (heading, text) => {
       setModalText(text);
@@ -124,7 +128,15 @@ function CreatePage() {
 
     try{
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       const res = await createSurvey(token, data);
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       const id = res.data._id;
 

@@ -119,7 +119,15 @@ const AuthPage = () => {
 
     try {
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       const res = await signUp(formData);
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       const token = res.data.token;
       const id = res.data.result._id;
