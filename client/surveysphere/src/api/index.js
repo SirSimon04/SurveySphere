@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseURL = process.env.REACT_APP_ENV === 'production' ? 'https://survey-sphere-server.onrender.com' : "http://localhost:5002";
-console.log(baseURL);
 
 const API = axios.create({ baseURL: baseURL });
 

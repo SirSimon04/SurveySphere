@@ -5,7 +5,7 @@ import './ImpressumButton.css';
 
 function ImpressumButton() {
     const navigate = useNavigate();
-    const location = useLocation();
+    let location = useLocation();
   return (
     location.pathname && location.pathname !== '/impressum' &&
     <button className="impressum" onClick={() => navigate('/impressum')}>
