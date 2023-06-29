@@ -51,7 +51,7 @@ const ReviewPage = () => {
     <>
       <NavBar 
           showGreeting={true}
-          middle={<h1 className="surveyListTitle">Deine erstellen Umfragen</h1>}
+          middle={<h1 className="surveyListTitle">Deine erstellten Umfragen</h1>}
           right={<LogoButton />}
         />
       <div className="surveyListContainer">

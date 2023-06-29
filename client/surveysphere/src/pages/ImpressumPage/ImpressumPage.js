@@ -37,6 +37,7 @@ function ImpressumPage() {
         <div id='linkSection'>
           <a href="https://www.flaticon.com/free-icons/share" title="share icons">Share icons created by Freepik - Flaticon</a> <br/>
           <a href="https://www.flaticon.com/free-icons/identification" title="identification icons">Identification icons created by Pixel perfect - Flaticon</a>
+          <a href="https://www.flaticon.com/free-icons/logout" title="logout icons">Logout icons created by Afian Rochmah Afif - Flaticon</a>
         </div>
         <div id='backButtonDiv'>
           <CancelButton
