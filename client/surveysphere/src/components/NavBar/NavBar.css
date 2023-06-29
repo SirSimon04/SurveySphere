@@ -25,21 +25,28 @@
     .navBar {
       padding: 10px;
       min-height: auto;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       justify-content: center;
     }
-    
+  
     .left {
-        display: none;
-    } 
-
-    .right {
-        text-align: center;
+      display: none;
     }
-
+  
+    .right {
+      text-align: center;
+    }
+  
     .middle {
       flex: 1;
-      text-align: left;
+      text-align: center;
+    }
+  
+    .middle input {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px;
+      font-size: 14px;
     }
   
     .greeting {
