@@ -1,9 +1,22 @@
 .impressum-container {
     padding: 5%;
-}
-
-#backButtonDiv {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  #linkSection {
+    margin-top: 20px;
+  }
+  
+  #backButtonDiv {
     position: fixed;
     bottom: 20px;
     right: 20px;
-} 
+  }
+  
+  @media (max-width: 768px) {
+    .impressum-container {
+      padding: 10px;
+    }
+  }
+  
