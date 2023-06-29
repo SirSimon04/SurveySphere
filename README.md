@@ -9,5 +9,5 @@
 - [x] Aufräumen der Ordnerstruktur
 - [x] An einer Umfrage nur einmal teilnehmen
 - [ ] Responsive Design
-- [ ] Dokumentation
-- [ ] Impressum noch einbinden - wo?
+- [x] Dokumentation
+- [x] Impressum noch einbinden - wo?
