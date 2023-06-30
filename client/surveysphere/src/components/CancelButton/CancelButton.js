@@ -1,6 +1,6 @@
 import React from 'react'
 import './CancelButton.css';
-import CancelImage from '../../media/logout.png'
+import CancelImage from '../../media/close.png'
 
 function CancelButton({ handleCancel, text }) {
   return (

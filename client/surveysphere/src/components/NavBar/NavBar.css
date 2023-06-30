@@ -29,6 +29,7 @@
 
 .middle input {
   box-sizing: border-box;
+  max-width: 95%;
 }
 
 .greeting {
@@ -55,7 +56,8 @@
   }
 
   .right * #cancelImage {
-    width: 15px;
+    width: 17px;
+    height: 17px;
     display: inline;
   }
 
