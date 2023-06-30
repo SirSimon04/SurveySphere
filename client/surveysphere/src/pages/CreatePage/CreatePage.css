@@ -13,15 +13,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   position: relative;
   margin-top: 20px;
 }
 
 .addCardButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   font-size: x-large;
   font-weight: bold;
   background-color: white;

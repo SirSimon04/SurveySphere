@@ -14,7 +14,7 @@ const AnimatedInput = ({ placeholder: passedPlaceholder = "", ...passedProps }) 
             } else {
                 setPlaceholderIndex(placeholderIndex + 1);
             }
-        }, 150);
+        }, 50);
         return () => {
             clearTimeout(intr);
         };
