@@ -55,7 +55,8 @@
   }
 
   .right * #cancelImage {
-    width: 15px;
+    width: 17px;
+    height: 17px;
     display: inline;
   }
 

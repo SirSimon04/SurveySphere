@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import AnimatedInput from "../../components/AnimatedInput/AnimatedInput.js";
 import NavBar from "../../components/NavBar/NavBar";
-import CancelButton from "../../components/CancelButton/CancelButton";
+import LogoutButton from "../../components/LogoutButton/LogoutButton";
 import { useDispatch } from 'react-redux';
 import { logout } from "../AuthPage/authSlice";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
@@ -52,7 +52,7 @@ function LandingPage() {
     <>
     <NavBar 
         middle={<h1 classNameName="title">Hallo, {userName}</h1>}
-        right={<CancelButton text={'Ausloggen'} handleCancel={handleLogout} />}
+        right={<LogoutButton text={'Ausloggen'} handleCancel={handleLogout} />}
     />
     <div className="page">
         <div className="inputContainer">

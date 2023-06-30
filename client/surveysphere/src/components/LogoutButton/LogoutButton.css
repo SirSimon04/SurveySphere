@@ -1,6 +1,4 @@
-.cancelButton {
-    display: flex;
-    justify-content: center;
+.logoutButton {
     padding: 10px;
     background-color: rgb(235, 81, 96);
     color: #fff;
