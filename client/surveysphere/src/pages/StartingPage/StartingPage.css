@@ -2,5 +2,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
+    min-height: 100vh;
+  }
+  
+  .submitButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .startContainer {
+      padding: 20px;
+    }
+  
+    .submitButtonContainer {
+      justify-content: center; 
+    }
+  }
+  

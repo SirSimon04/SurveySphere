@@ -4,8 +4,29 @@ import './AuthPage.css';
 import { useDispatch } from 'react-redux';
 import { login } from "./authSlice";
 import { signIn, signUp } from "../../api/index";
+import { setLoading } from '../../app/loadingSlice';
+import Modal from 'react-modal';
+import modalStyles from '../../constants/modalStyles';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
 
 const AuthPage = () => {
+
+  const [modalHeading, setModalHeading] = useState('');
+  const [modalText, setModalText] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = (heading, text) => {
+    setModalText(text);
+    setModalHeading(heading);
+    setIsOpen(true);
+  }
+
+  const closeModal = (navigationTarget) => {
+    setIsOpen(false);
+    if(navigationTarget){
+      navigate(navigationTarget);
+    }
+  };
 
   const dispatch = useDispatch();
 
@@ -47,7 +68,15 @@ const AuthPage = () => {
 
     try{
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       const res = await signIn(formData);  
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       const token = res.data.token;
       const id = res.data.result._id;
@@ -62,7 +91,6 @@ const AuthPage = () => {
       navigate("/overview");
 
     } catch(e) {
-      console.log({e});
       let error;
       switch(e.response.status){
         case 401: 
@@ -74,7 +102,7 @@ const AuthPage = () => {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
-      alert(error);
+      openModal("Es ist ein Fehler aufgetreten", error);
     }
 
   };
@@ -91,7 +119,15 @@ const AuthPage = () => {
 
     try {
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       const res = await signUp(formData);
+
+      dispatch(setLoading({
+        status: false
+      }));
 
       const token = res.data.token;
       const id = res.data.result._id;
@@ -106,7 +142,6 @@ const AuthPage = () => {
       navigate("/overview");
 
     } catch (e) {
-      console.log({e});
       let error;
       switch(e.response.status){
         case 409:
@@ -118,7 +153,7 @@ const AuthPage = () => {
         default:
           error = "Es ist ein unbestimmter Fehler aufgetreten";
       }
-      alert(error);
+      openModal("Es ist ein Fehler aufgetreten", error);
     }
   }
 
@@ -159,6 +194,17 @@ const AuthPage = () => {
           { isLogin ? "Noch kein Konto?" : "Schon ein Konto?"} <a href="#signup" onClick={switchMode}>{ isLogin ? "Registieren" : "Login"}</a>
         </p>
       </form>
+      <div>
+        <Modal
+          isOpen={isOpen}
+          style={modalStyles}
+          contentLabel="Dialog"
+        >
+          <h2>{modalHeading}</h2>
+          <p>{modalText}</p>
+          <SubmitButton onClick={() => closeModal()} text={'Schließen'}/>
+        </Modal>
+      </div>
     </div>
   );
 };

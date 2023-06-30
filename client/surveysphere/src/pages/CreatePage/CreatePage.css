@@ -1,6 +1,6 @@
 .creatorContainer {
-  margin-top: 100px;
-  margin-bottom: 200px;
+  margin-top: 120px;
+  margin-bottom: 100px;
 }
 
 .createCardContainer {
@@ -13,16 +13,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   position: relative;
   margin-top: 20px;
 }
 
 .addCardButton {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: x-large;
   font-weight: bold;
   background-color: white;
   color: #6a63f6;
@@ -34,7 +34,7 @@
   position: absolute;
   right: -25px;
   top: -65px;
-  z-index: 1;
+  z-index: 0;
 }
 
 #titleInput {
@@ -42,8 +42,8 @@
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 24px;
+  border-radius: 3px;
+  font-size: x-large;
   font-weight: bold;
   color: #333;
   background-color: #fff;

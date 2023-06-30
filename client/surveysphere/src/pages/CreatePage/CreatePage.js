@@ -1,14 +1,40 @@
 import React, { useState } from 'react';
 import './CreatePage.css';
-import CreateQuestionCard from '../../components/CreateQuestionCard/CreateQuestionCard';
+import CreateQuestionCard from './components/CreateQuestionCard/CreateQuestionCard';
 import { createSurvey } from '../../api/index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import NavBar from '../../components/NavBar/NavBar';
 import CancelButton from '../../components/CancelButton/CancelButton';
+import Modal from 'react-modal';
+import modalStyles from '../../constants/modalStyles';
+import { setLoading } from '../../app/loadingSlice';
+import { useDispatch } from 'react-redux';
 
 function CreatePage() {
+
+  const [modalHeading, setModalHeading] = useState('');
+  const [modalText, setModalText] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+  const [createdSurveyID, setCreatedSurveyID] = useState();
+
+  const dispatch = useDispatch();
+
+  const openModal = (heading, text) => {
+      setModalText(text);
+      setModalHeading(heading);
+      setIsOpen(true);
+    }
+
+    const closeModal = (navigationTarget) => {
+      setIsOpen(false);
+      if(navigationTarget && shouldNavigate){
+        navigator.clipboard.writeText(createdSurveyID);
+        navigate(navigationTarget);
+      }
+    };
 
   const navigate = useNavigate();
 
@@ -67,7 +93,6 @@ function CreatePage() {
 
 
   const convertToServerData = () => {
-    console.log()
     const serverData = {
       name: title,
       isMultiSelect: false,
@@ -79,14 +104,13 @@ function CreatePage() {
         }))
       }))
     };
-    console.log(serverData);
     return serverData;
   };
 
   const uploadSurvey = async () => {
 
     if (title.trim() === '') {
-      alert('Bitte gib einen Titel für die Umfrage ein.');
+      openModal('Es ist ein Fehler aufgetreten', 'Bitte gib einen Titel für die Umfrage ein.');
       return;
     }
 
@@ -98,7 +122,7 @@ function CreatePage() {
     });
 
     if (!allQuestionsAnswered) {
-      alert('Bitte fülle alle Fragen und Antwortoptionen aus, bevor du die Umfrage hochlädst.');
+      openModal('Es ist ein Fehler aufgetreten', 'Bitte fülle alle Fragen und Antwortoptionen aus, bevor du die Umfrage hochlädst.')
       return;
     }
 
@@ -106,24 +130,30 @@ function CreatePage() {
 
     try{
 
+      dispatch(setLoading({
+        status: true
+      }));
+
       const res = await createSurvey(token, data);
 
-      console.log(res);
+      dispatch(setLoading({
+        status: false
+      }));
 
       const id = res.data._id;
 
-      alert(`Erfolgreich erstellt ${id}`);
+      setCreatedSurveyID(id);
 
-      navigate('/overview');
+      setShouldNavigate(true);
+      openModal('Erfolgreich erstellt', `Deine Umfrage wurde erfolgreich hochgeladen. Die ID ist ${id}`)
 
     } catch (e) {
-      console.log({e});
       let error;
       switch(e.response.status){
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
-      alert(error);
+      openModal('Es ist ein Fehler aufgetreten', error);
     }
 
   }
@@ -166,6 +196,18 @@ function CreatePage() {
           <p>Dein Umfrage ist fertig?</p>
           <SubmitButton onClick={uploadSurvey} text={'Hochladen!'}/>
         </div>
+      </div>
+      <div>
+        <Modal
+          isOpen={isOpen}
+          style={modalStyles}
+          contentLabel="Dialog"
+        >
+          <h2>{modalHeading}</h2>
+          <p>{modalText}</p>
+          <SubmitButton onClick={() => closeModal('/overview')} text={shouldNavigate ? 'ID kopieren' : 'Schließen'}/>
+          
+        </Modal>
       </div>
     </div>
   );

@@ -1,12 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5002" });
+const baseURL = process.env.REACT_APP_ENV === 'production' ? 'https://survey-sphere-server.onrender.com' : "http://localhost:5002";
 
-// Hinzufügen des JWT-Tokens als Authorization-Header
-// API.interceptors.request.use((config) => {
-//     config.headers.Authorization = `Bearer asdf`; //can be empty for now because backend sets id if no id is given => easier for development
-//   return config;
-// });
+const API = axios.create({ baseURL: baseURL });
 
 export const getSurvey = (surveyID) => API.get(`/survey/find/${surveyID}`);
 export const signIn = (formData) => API.post("/user/signin", formData);

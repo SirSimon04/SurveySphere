@@ -9,8 +9,12 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import StartingPage from "./pages/StartingPage/StartingPage";
 import ImpressumPage from "./pages/ImpressumPage/ImpressumPage";
+import Modal from 'react-modal';
+import ImpressumButton from './components/ImpressumButton/ImpressumButton'
+import LoadingIndicator from "./components/LoadingIndicator/LoadingIndicator";
 
 function App() {
+  Modal.setAppElement('#root');
   return (
     <BrowserRouter>
       <body>
@@ -25,6 +29,8 @@ function App() {
           <Route path='/impressum' element={<ImpressumPage />}/>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>
+        <ImpressumButton/>
+        <LoadingIndicator />
       </body>
     </BrowserRouter>
   );
