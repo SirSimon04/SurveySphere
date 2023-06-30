@@ -51,8 +51,15 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.titleInput::placeholder {
+#titleInput::placeholder {
   color: #888;
   font-weight: normal;
   font-style: italic;
+}
+
+@media (max-width: 768px) {
+  #titleInput {
+    font-size: large;
+    max-width: 90%;
+  }
 }
