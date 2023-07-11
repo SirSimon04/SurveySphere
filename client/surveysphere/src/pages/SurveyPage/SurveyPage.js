@@ -65,7 +65,11 @@ function SurveyPage() {
         setSurvey(dbSurvey.data);
         setSelectedAnswers(new Array(dbSurvey.data.questions.length).fill([]));
       } catch (e){
-        openModal('Es ist ein Fehler aufgetreten', 'Die Umfrage mit der eingegebenen ID wurde nicht gefunden')
+        dispatch(setLoading({
+          status: false
+        }));
+        setShouldNavigate(true);
+        openModal('Es ist ein Fehler aufgetreten', 'Die Umfrage mit der eingegebenen ID wurde nicht gefunden');
       }
   }
 
@@ -131,6 +135,9 @@ function SurveyPage() {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
+      dispatch(setLoading({
+        status: false
+      }));
       openModal('Es ist ein Fehler aufgetreten', error);
     }
 

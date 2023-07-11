@@ -153,6 +153,9 @@ function CreatePage() {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
+      dispatch(setLoading({
+        status: false
+      }));
       openModal('Es ist ein Fehler aufgetreten', error);
     }
 
