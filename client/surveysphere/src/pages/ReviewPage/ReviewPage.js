@@ -36,6 +36,9 @@ const ReviewPage = () => {
 
       setSurveys(dbSurveys.data);
     } catch (error) {
+      dispatch(setLoading({
+        status: false
+      }));
     }
   }
 

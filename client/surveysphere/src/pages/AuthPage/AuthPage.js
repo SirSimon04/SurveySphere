@@ -102,6 +102,9 @@ const AuthPage = () => {
         default:
           error = "Es ist ein unbestimmer Fehler aufgetreten";
       }
+      dispatch(setLoading({
+        status: false
+      }));
       openModal("Es ist ein Fehler aufgetreten", error);
     }
 
@@ -153,6 +156,9 @@ const AuthPage = () => {
         default:
           error = "Es ist ein unbestimmter Fehler aufgetreten";
       }
+      dispatch(setLoading({
+        status: false
+      }));
       openModal("Es ist ein Fehler aufgetreten", error);
     }
   }
