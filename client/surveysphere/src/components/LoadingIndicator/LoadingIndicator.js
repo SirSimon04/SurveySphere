@@ -4,8 +4,7 @@ import './LoadingIndicator.css'
 
 function LoadingIndicator() {
   const isLoading = useSelector((state) => state.loading.isLoading);
-  console.log(isLoading)
-
+  
   return (
     isLoading && (
       <div className="loading-overlay">

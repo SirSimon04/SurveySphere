@@ -51,8 +51,8 @@ function LandingPage() {
     return (
     <>
     <NavBar 
-        middle={<h1 classNameName="title">Hallo, {userName}</h1>}
-        right={<LogoutButton text={'Ausloggen'} handleCancel={handleLogout} />}
+        middle={<h1 className="title">Hallo, {userName}</h1>}
+        right={<LogoutButton handleLogout={handleLogout} />}
     />
     <div className="page">
         <div className="inputContainer">
